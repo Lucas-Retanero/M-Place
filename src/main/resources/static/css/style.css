@@ -1,3 +1,127 @@
-h1 {
-	color: green;
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* Configurações gerais */
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+:root {
+	--primary-color: #6A0DAD;
+	--secondary-color: #1E1E2E;
+	--complementary-color: #2A2A37;
+	--bg-color: #121212;
+	--destaque-color: #02F1F1;
+	--text-color: #F0F0F0;
+	font-family: "Rajdhani", sans-serif;
+}
+
+body {
+	background-color: var(--bg-color);
+	color: var(--text-color);
+}
+
+#app {
+	display: flex;
+	flex-direction: row;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	background-color: var(--secondary-color);
+	width: 100%;
+	height: 6.5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-left: solid 1px var(--complementary-color);
+	gap: 0.5rem;
+}
+
+header h1 {
+	padding-top: 0.3rem;
+	font-size: 2.8rem;
+	color: var(--primary-color);
+	cursor: default;
+}
+
+#logo {
+	padding: 0;
+	height: 6.5rem;
+}
+
+#logo:hover {
+	background-color: var(--secondary-color);
+	cursor: unset;
+}
+
+#logo i {
+	font-size: 3.5rem;
+	color: var(--primary-color);
+}
+
+nav {
+	background-color: var(--secondary-color);
+	width: 10rem;
+	height: 100vh;
+	
+}
+
+nav ul li {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-bottom: solid 1px var(--complementary-color);
+	gap: 0.3rem;
+	min-height: 6rem;
+	padding: 1.5rem;
+}
+
+nav ul li:hover {
+	background-color: var(--complementary-color);
+	cursor: pointer;
+}
+
+nav ul li i {
+	font-size: 1.4rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 0.4rem;
+}
+
+nav ul li p {
+	font-size: 1.1rem;
+	font-weight: 500;
+}
+
+main {
+	width: 100%;
+	height: calc(100vh - 6.5rem);;
+	background-color: var(--bg-color);
+	padding-top: 2.5rem;
+	padding-left: 3rem;
+	padding-right: 2.5rem;
+	overflow-y: scroll;
+}
+
+main::-webkit-scrollbar {
+	width: 10px;
+}
+
+main::-webkit-scrollbar-track {
+  width: 10px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  width: 10px;
+  border-radius: 10px;
 }
