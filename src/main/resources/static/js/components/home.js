@@ -4,18 +4,28 @@ export const Home = {
             brinquedos: []
         };
     },
+    methods: {
+        carregarBrinquedos() {
+            fetch("http://localhost:8080/brinquedo")
+                .then(response => response.json())
+                .then(data => {
+                    this.brinquedos = data;
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar brinquedos:", error);
+                });
+        },
+        iniciarAtualizacaoAutomatica() {
+            const source = new EventSource("http://localhost:8080/sse/brinquedo");
+            source.addEventListener("atualizacao", () => {
+                this.carregarBrinquedos();
+            });
+        }
+    },
     mounted() {
         this.carregarBrinquedos();
         this.iniciarAtualizacaoAutomatica();
     },
-	mounted() {
-		this.carregarBrinquedos();
-	
-		const source = new EventSource("http://localhost:8080/sse/brinquedos");
-		source.addEventListener("atualizacao", () => {
-		  this.carregarBrinquedos();
-		});
-	  },
     template: `
         <section class="home">
             <h1 id="titulo-home">Brinquedos em Destaque</h1>
