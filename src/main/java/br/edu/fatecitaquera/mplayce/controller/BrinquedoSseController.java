@@ -13,7 +13,7 @@ public class BrinquedoSseController {
 
     private final List<SseEmitter> emissores = new CopyOnWriteArrayList<>();
 
-    @GetMapping("/sse/brinquedos")
+    @GetMapping("/sse/brinquedo")
     public SseEmitter streamBrinquedos() {
         SseEmitter emitter = new SseEmitter();
         emissores.add(emitter);
