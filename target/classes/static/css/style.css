@@ -90,6 +90,10 @@ nav ul li:hover {
 	cursor: pointer;
 }
 
+nav ul li:has(.router-link-active) {
+	background-color: var(--complementary-color);
+}
+
 nav ul li i {
 	font-size: 1.4rem;
 	display: flex;
@@ -102,6 +106,7 @@ nav ul li p {
 	font-size: 1.1rem;
 	font-weight: 500;
 }
+
 
 main {
 	width: 100%;

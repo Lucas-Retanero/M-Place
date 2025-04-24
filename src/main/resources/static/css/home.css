@@ -57,6 +57,7 @@
     font-weight: 500;
     width: 100%;
 }
+
 .preco-brinquedo {
     display: flex;
     flex-direction: column;
