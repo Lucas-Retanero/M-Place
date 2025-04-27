@@ -6,6 +6,8 @@ export const Equipe = {
         
     },
     template: `
-    <h1>Bem-vindo(a) à Equipe M-Place!</h1>
+    <section class="equipe">
+        <h1 id="titulo">Sobre a Equipe</h1>
+    </section>
     `,
 };

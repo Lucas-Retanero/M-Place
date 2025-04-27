@@ -6,6 +6,8 @@ export const Administracao = {
         
     },
     template: `
-    <h1>Bem-vindo(a) à Adiministração do M-Place!</h1>
+    <section class="administracao">
+        <h1 id="titulo">Administração de Brinquedos</h1>
+    </section>
     `,
 };

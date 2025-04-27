@@ -44,7 +44,7 @@ const app = {
         </nav>
 
         <div class="container">
-            <header id="titulo">
+            <header>
                 <h1>M-Place</h1>
             </header>
 

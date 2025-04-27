@@ -6,6 +6,8 @@ export const Catalogo = {
         
     },
     template: `
-    <h1>Bem-vindo(a) ao catálogo M-Place!</h1>
+    <section class="catalogo">
+        <h1 id="titulo">Catálogo de Brinquedos</h1>
+    </section>
     `,
 };

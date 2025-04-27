@@ -28,7 +28,7 @@ export const Home = {
     },
     template: `
         <section class="home">
-            <h1 id="titulo-home">Brinquedos em Destaque</h1>
+            <h1 id="titulo">Brinquedos em Destaque</h1>
 
             <div class="destaques">
                 <div v-for="brinquedo in brinquedos" :key="brinquedo.id" class="card-brinquedo">
