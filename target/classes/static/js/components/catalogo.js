@@ -8,6 +8,10 @@ export const Catalogo = {
     template: `
     <section class="catalogo">
         <h1 id="titulo">Catálogo de Brinquedos</h1>
+
+        <div class="categorias">
+        
+        </div>
     </section>
     `,
 };

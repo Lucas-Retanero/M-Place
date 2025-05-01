@@ -1,4 +1,4 @@
-package br.edu.fatecitaquera.mplayce.controller;
+package br.edu.fatecitaquera.mplayce;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

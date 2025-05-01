@@ -2,8 +2,10 @@ import { Home } from './components/home.js';
 import { Catalogo } from './components/catalogo.js';
 import { Administracao } from './components/administacao.js';
 import { Equipe } from './components/equipe.js';
+import { Login } from './components/login.js';
 
 const routes = [
+	{ path: '/login', component: Login },
     { path: '/', component: Home },
     { path: '/catalogo', component: Catalogo },
     { path: '/admin', component: Administracao },
