@@ -1,4 +1,5 @@
 package br.edu.fatecitaquera.mplayce.model;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -9,7 +10,6 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Usuário {
-	// Atributos;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,22 +18,19 @@ public class Usuário {
     private String senha;
     private static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private int permissao;
-    
-    // Construtores;
+
     public Usuário() {
-        // TODO Auto-generated constructor stub
+        // Construtor vazio
     }
-    
+
     public Usuário(int id, String nome, String email, String senha, int permissao) {
-        super();
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.permissao = permissao;
     }
-    
-    // Getters e setters;
+
     public int getId() {
         return id;
     }
@@ -42,7 +39,6 @@ public class Usuário {
         this.id = id;
     }
 
-    
     public String getNome() {
         return nome;
     }
@@ -51,7 +47,6 @@ public class Usuário {
         this.nome = nome;
     }
 
-    
     public String getEmail() {
         return email;
     }
@@ -59,8 +54,7 @@ public class Usuário {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
+
     public String getSenha() {
         return senha;
     }
@@ -69,12 +63,11 @@ public class Usuário {
         this.senha = senha;
         return this;
     }
-    
-    
+
     public int getPermissao() {
         return permissao;
     }
-    
+
     public void setPermissao(int permissao) {
         this.permissao = permissao;
     }

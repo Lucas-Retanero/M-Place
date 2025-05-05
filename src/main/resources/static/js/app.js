@@ -5,8 +5,8 @@ import { Equipe } from './components/equipe.js';
 import { Login } from './components/login.js';
 
 const routes = [
-	{ path: '/login', component: Login },
-    { path: '/', component: Home },
+	{ path: '/', component: Login },
+    { path: '/home', component: Home },
     { path: '/catalogo', component: Catalogo },
     { path: '/admin', component: Administracao },
     { path: '/equipe', component: Equipe },
@@ -17,6 +17,14 @@ const router = VueRouter.createRouter({
     routes
 });
 
+router.afterEach((to) => {
+    if (to.path === '/' || to.path === '/login') {
+        document.body.classList.add('login-background');
+    } else {
+        document.body.classList.remove('login-background');
+    }
+});
+
 const app = {
     data() {
         return {
@@ -25,13 +33,13 @@ const app = {
     methods: {
     },
     template: `
-        <nav>
+        <nav v-if="$route.path !== '/' && $route.path !== '/login'">
             <ul>
                 <li id="logo">
                     <i id="logo" class="fi fi-sc-gamepad"></i>
                 </li>
                 <li>
-                    <router-link to="/"><i class="fi fi-sr-home"></i><p>Home</p></router-link>
+                    <router-link to="/home"><i class="fi fi-sr-home"></i><p>Home</p></router-link>
                 </li>
                 <li>
                     <router-link to="/catalogo"><i class="fi fi-sr-catalog"></i><p>Catálogo</p></router-link>

@@ -14,6 +14,8 @@ html {
 	--bg-color: #121212;
 	--destaque-color: #02F1F1;
 	--text-color: #F0F0F0;
+	--erro-color: #df0e0e;
+	--transition: 0.3s;
 	font-family: "Rajdhani", sans-serif;
 }
 
@@ -111,7 +113,6 @@ nav ul li p {
 main {
 	width: 100%;
 	height: calc(100vh - 6.5rem);;
-	background-color: var(--bg-color);
 	padding-top: 2.5rem;
 	padding-left: 3rem;
 	padding-right: 2.5rem;

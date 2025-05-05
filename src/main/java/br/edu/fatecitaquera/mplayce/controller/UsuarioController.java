@@ -1,5 +1,5 @@
 package br.edu.fatecitaquera.mplayce.controller;
-import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,23 +22,25 @@ import br.edu.fatecitaquera.mplayce.repository.UsuarioRepository;
 
 @RestController
 public class UsuarioController {
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Autowired
     private UsuarioRepository repository;
 
     @PostMapping("/usuario")
-    public ResponseEntity<String> criar(@RequestBody Usuário usuario) {
+    public ResponseEntity<Map<String, String>> criar(@RequestBody Usuário usuario) {
         String senhaCodificada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCodificada);
 
         repository.save(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body("✅ Usuário criado com sucesso!");
-    }
 
+        Map<String, String> resposta = new HashMap<>();
+        resposta.put("mensagem", "✅ Usuário criado com sucesso!");
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
+    }
 
     @GetMapping("/usuario")
     public ResponseEntity<?> listarTodos() {
@@ -103,14 +105,11 @@ public class UsuarioController {
 
         Usuário usuario = optionalUsuario.get();
 
-        System.out.println("Senha fornecida: " + senha);
-        System.out.println("Senha armazenada: " + usuario.getSenha());
-
         if (!passwordEncoder.matches(senha, usuario.getSenha())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("error", "Senha incorreta."));
         }
-        
+
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Login bem-sucedido.");
         response.put("usuario", Map.of(
@@ -124,12 +123,33 @@ public class UsuarioController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/usuario/recuperar-senha")
+    public ResponseEntity<Map<String, String>> recuperarSenha(@RequestBody Map<String, String> data) {
+        String email = data.get("email");
+        String novaSenha = data.get("novaSenha");
+
+        Optional<Usuário> usuarioOptional = repository.findByEmail(email);
+        if (usuarioOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("error", "Email não encontrado."));
+        }
+
+        Usuário usuario = usuarioOptional.get();
+        String senhaCodificada = passwordEncoder.encode(novaSenha);
+        usuario.setSenha(senhaCodificada);
+        repository.save(usuario);
+
+        Map<String, String> resposta = new HashMap<>();
+        resposta.put("mensagem", "✅ Senha atualizada com sucesso!");
+
+        return ResponseEntity.ok(resposta);
+    }
 
     private List<String> getPaginasPorTipo(int tipo) {
         return switch (tipo) {
-            case 1 -> List.of("admin/home", "admin/config"); //paginas de adm
-            case 2 -> List.of("user/home"); //paginas de usuário
-            default -> List.of("user/home");  //padrão (qualquer outro numero)
+            case 1 -> List.of("admin/home", "admin/config");
+            case 2 -> List.of("user/home");
+            default -> List.of("user/home");
         };
     }
 }
