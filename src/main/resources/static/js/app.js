@@ -30,9 +30,23 @@ router.afterEach((to) => {
 const app = {
     data() {
         return {
+            showLogoutConfirm: false,
+            logoutCallback: null
         };
     },
     methods: {
+        confirmLogout(navigate) {
+            this.logoutCallback = navigate;
+            this.showLogoutConfirm = true;
+        },
+        logoutNow() {
+            this.showLogoutConfirm = false;
+            if (this.logoutCallback) this.logoutCallback();
+        },
+        cancelLogout() {
+            this.showLogoutConfirm = false;
+            this.logoutCallback = null;
+        }
     },
     template: `
     <nav v-if="$route.path !== '/' && $route.path !== '/login'">
@@ -72,22 +86,34 @@ const app = {
             </router-link>
 
             <router-link to="/" custom v-slot="{ navigate, isActive }">
-                <li @click="navigate" :class="{ active: isActive }" id="logout">
+                <li @click.prevent="confirmLogout(navigate)" :class="{ active: isActive }" id="logout">
                     <i class="bx bx-log-out"></i><p>Sair</p>
                 </li>
             </router-link>
 		</ul>
 	</nav>
 
-        <div class="container">
-            <header>
-                <h1>M-Place</h1>
-            </header>
-
-            <main>
-                <router-view></router-view>
-            </main>
+    <!-- POP-UP DE CONFIRMAÇÃO DE LOGOUT -->
+    <div v-if="showLogoutConfirm" class="logout-popup">
+        <div class="popup-content">
+            <p id="interrogacao">?</p>
+            <p>Você está prestes a sair. Deseja continuar?</p>
+            <div class="btns-logout">
+                <button id="btn-sim" @click="logoutNow">Sim, quero sair</button>
+                <button @click="cancelLogout">Voltar</button>
+            </div>
         </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>M-Place</h1>
+        </header>
+
+        <main>
+            <router-view></router-view>
+        </main>
+    </div>
     `
 };
 

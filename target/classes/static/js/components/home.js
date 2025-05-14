@@ -1,7 +1,8 @@
 export const Home = {
     data() {
         return {
-            brinquedos: []
+            brinquedos: [],
+            source: null
         };
     },
     methods: {
@@ -16,8 +17,8 @@ export const Home = {
                 });
         },
         iniciarAtualizacaoAutomatica() {
-            const source = new EventSource("http://localhost:8080/sse/brinquedo");
-            source.addEventListener("atualizacao", () => {
+            this.source = new EventSource("http://localhost:8080/sse/brinquedo");
+            this.source.addEventListener("atualizacao", () => {
                 this.carregarBrinquedos();
             });
         }
@@ -25,6 +26,11 @@ export const Home = {
     mounted() {
         this.carregarBrinquedos();
         this.iniciarAtualizacaoAutomatica();
+    },
+    beforeUnmount() {
+        if (this.source) {
+            this.source.close();
+        }
     },
     template: `
         <section class="home">

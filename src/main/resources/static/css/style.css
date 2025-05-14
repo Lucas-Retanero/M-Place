@@ -15,6 +15,8 @@ html {
 	--destaque-color: #02F1F1;
 	--text-color: #F0F0F0;
 	--erro-color: #df0e0e;
+	--comfirm-color: #bf0b0b;
+	--comfirm-color-hover: #8f0707;
 	--transition: 0.3s;
 	font-family: "Rajdhani", sans-serif;
 }
@@ -109,12 +111,91 @@ nav ul li i {
 }
 
 #logout:hover {
-	color: var(--erro-color);
+	color: var(--comfirm-color);
 }
 
 #logout i {
 	font-size: 1.5rem;
 	padding-right: 0.4rem;
+}
+
+.logout-popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+}
+
+.popup-content {
+	width: 26rem;
+	background-color: var(--secondary-color);
+	border-radius: 0.8rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem;
+	border: solid 1px var(--complementary-color);
+}
+
+#interrogacao {
+	font-size: 3rem;
+	color: var(--primary-color);
+	height: 5rem;
+	width: 5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	border: solid 2px var(--primary-color);
+	text-align: center;
+	font-weight: 600;
+}
+
+.popup-content p {
+	font-size: 1.2rem;
+	font-weight: 500;
+	text-align: center;
+}
+
+.btns-logout {
+	display: flex;
+	gap: 1rem;
+}
+
+.btns-logout button {
+	width: 10rem;
+	height: 3rem;
+	background-color: var(--primary-color);
+	color: var(--text-color);
+	border: none;
+	padding-top: 2px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btns-logout button:hover {
+	background-color: var(--primary-color-hover);
+}
+
+#btn-sim {
+	background-color: var(--comfirm-color);
+}
+
+#btn-sim:hover {
+	background-color: var(--comfirm-color-hover);
 }
 
 nav ul li p {

@@ -19,12 +19,12 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    width: 14rem;
-    height: 14rem;
-    background-color: var(--secondary-color);
+    width: 16rem;
+    height: 16rem;
     border-radius: 0.8rem;
-    padding: 0.5rem;
+    padding: 1rem;
     cursor: pointer;
+    background-color: var(--secondary-color);
 }
 
 .categoria p {
@@ -43,3 +43,19 @@
     height: 100%;
     border-radius: 0.8rem;
 }
+
+/* #add-categoria {
+    font-size: 6rem;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    background-color: var(--complementary-color);
+    color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+
+} */
