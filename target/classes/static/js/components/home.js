@@ -49,6 +49,8 @@ export const Home = {
                     <button id="btn-comprar">Comprar</button>
                 </div>
             </div>
+
+            <p v-if="brinquedos.length === 0" id="sem-brinquedos">Ops! Por enquanto, nenhum brinquedo foi cadastrado no sistema.</p>
         </section>
     `
 };
