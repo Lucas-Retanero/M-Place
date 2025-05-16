@@ -6,18 +6,22 @@ export const Catalogo = {
             sourceCategorias: null,
             sourceBrinquedos: null,
             categoriaSelecionada: null,
-            buscouBrinquedos: false
+            buscouBrinquedos: false,
+            carregandoCategorias: true 
         };
     },
     methods: {
         carregarCategorias() {
+            this.carregandoCategorias = true;
             fetch("http://localhost:8080/categoria")
                 .then(response => response.json())
                 .then(data => {
                     this.categorias = data;
+                    this.carregandoCategorias = false;
                 })
                 .catch(error => {
                     console.error("Erro ao carregar categorias:", error);
+                    this.carregandoCategorias = false;
                 });
         },
         carregarBrinquedosPorCategoria(nomeCategoria) {
@@ -40,14 +44,14 @@ export const Catalogo = {
             this.sourceCategorias = new EventSource("http://localhost:8080/sse/categoria");
             this.sourceCategorias.addEventListener("atualizacao", () => {
                 this.carregarCategorias();
-                this.$forceUpdate(); // força atualização visual
+                this.$forceUpdate();
             });
 
             this.sourceBrinquedos = new EventSource("http://localhost:8080/sse/brinquedo");
             this.sourceBrinquedos.addEventListener("atualizacao", () => {
                 if (this.categoriaSelecionada) {
                     this.carregarBrinquedosPorCategoria(this.categoriaSelecionada);
-                    this.$forceUpdate(); // força atualização visual
+                    this.$forceUpdate();
                 }
             });
         },
@@ -73,17 +77,13 @@ export const Catalogo = {
         <h1 id="titulo">Catálogo de Brinquedos<span v-if="categoriaSelecionada"> - Brinquedos da categoria: {{ categoriaSelecionada }}</span></h1>
 
         <div class="categorias" v-if="!categoriaSelecionada">
-            <div
-                v-for="categoria in categorias"
-                :key="categoria.id || categoria.nome"
-                class="categoria"
-                @click="selecionarCategoria(categoria)"
-            >
+            <div v-for="categoria in categorias" :key="categoria.id || categoria.nome" class="categoria" @click="selecionarCategoria(categoria)">
                 <div class="card-img-categoria">
                     <img :src="categoria.urlimagem" :alt="categoria.nome" :title="categoria.nome" />
                 </div>
                 <p>{{ categoria.nome }}</p>
             </div>
+            <p v-if="!carregandoCategorias && categorias.length === 0" id="sem-brinquedos">Ops! Por enquanto, nenhuma categoria foi cadastrada no sistema.</p>
         </div>
 
         <button id="btn-voltar-categorias" v-if="categoriaSelecionada" @click="categoriaSelecionada = null; brinquedos = []; buscouBrinquedos = false;"><i class="fi fi-rr-arrow-small-left"></i> Voltar para todas as categorias</button>
@@ -103,7 +103,7 @@ export const Catalogo = {
                 </div>
             </div>
 
-            <p v-else-if="buscouBrinquedos" id="sem-brinquedos">Ops! Por enquanto, nenhum brinquedo foi cadastrado para a categoria '{{ categoriaSelecionada }}'.</p>
+            <p v-if="buscouBrinquedos && brinquedos.length === 0" id="sem-brinquedos">Ops! Por enquanto, nenhum brinquedo foi cadastrado para a categoria '{{ categoriaSelecionada }}'.</p>
 
         </div>
     </section>

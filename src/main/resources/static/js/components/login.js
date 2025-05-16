@@ -155,7 +155,7 @@ export const Login = {
         <!-- Formulário de Login -->
         <form v-if="!modoCadastro && !modoRecuperacao" class="form-container login-form" @submit.prevent="fazerLogin">
           <div class="input-box" :class="{ filled: login.email }">
-            <input type="text" class="input-field" v-model="login.email" required>
+            <input type="email" class="input-field" v-model="login.email" required>
             <label class="label">Email</label>
             <i class="fi fi-rr-envelope" id="icon-login"></i>
           </div>

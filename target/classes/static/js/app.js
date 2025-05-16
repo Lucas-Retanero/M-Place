@@ -19,6 +19,26 @@ const router = VueRouter.createRouter({
     routes
 });
 
+function isAuthenticated() {
+    return !!localStorage.getItem('token'); 
+}
+
+router.beforeEach((to, from, next) => {
+    const publicPages = ['/', '/login'];
+    const authRequired = !publicPages.includes(to.path);
+    const loggedIn = isAuthenticated();
+
+    if (authRequired && !loggedIn) {
+        return next('/');
+    }
+
+    if (loggedIn && (to.path === '/' || to.path === '/login')) {
+        return next('/home');
+    }
+
+    next();
+});
+
 router.afterEach((to) => {
     if (to.path === '/' || to.path === '/login') {
         document.body.classList.add('login-background');
@@ -41,6 +61,7 @@ const app = {
         },
         logoutNow() {
             this.showLogoutConfirm = false;
+            localStorage.removeItem('token');
             if (this.logoutCallback) this.logoutCallback();
         },
         cancelLogout() {
@@ -50,18 +71,18 @@ const app = {
     },
     template: `
     <nav v-if="$route.path !== '/' && $route.path !== '/login'">
-		<ul>
+        <ul>
             <li id="logo">
                 <i class="fi fi-sc-gamepad"></i>
             </li>
 
-			<router-link to="/home" custom v-slot="{ navigate, isActive }">
-		        <li @click="navigate" :class="{ active: isActive }">
-			        <i class="fi fi-sr-home"></i><p>Home</p>
-		        </li>
-	        </router-link>
+            <router-link to="/home" custom v-slot="{ navigate, isActive }">
+                <li @click="navigate" :class="{ active: isActive }">
+                    <i class="fi fi-sr-home"></i><p>Home</p>
+                </li>
+            </router-link>
 
-			<router-link to="/catalogo" custom v-slot="{ navigate, isActive }">
+            <router-link to="/catalogo" custom v-slot="{ navigate, isActive }">
                 <li @click="navigate" :class="{ active: isActive }">
                     <i class="fi fi-sr-catalog"></i><p>Catálogo</p>
                 </li>
@@ -90,10 +111,9 @@ const app = {
                     <i class="bx bx-log-out"></i><p>Sair</p>
                 </li>
             </router-link>
-		</ul>
-	</nav>
+        </ul>
+    </nav>
 
-    <!-- POP-UP DE CONFIRMAÇÃO DE LOGOUT -->
     <div v-if="showLogoutConfirm" class="logout-popup">
         <div class="popup-content">
             <p id="interrogacao">?</p>
