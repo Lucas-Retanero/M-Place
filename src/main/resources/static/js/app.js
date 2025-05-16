@@ -1,6 +1,6 @@
 import { Home } from './components/home.js';
 import { Catalogo } from './components/catalogo.js';
-import { Administracao } from './components/administacao.js';
+import { Administracao } from './components/administracao.js';
 import { Usuarios } from './components/usuarios.js';
 import { Equipe } from './components/equipe.js';
 import { Login } from './components/login.js';
@@ -17,26 +17,6 @@ const routes = [
 const router = VueRouter.createRouter({
     history: VueRouter.createWebHashHistory(),
     routes
-});
-
-function isAuthenticated() {
-    return !!localStorage.getItem('token'); 
-}
-
-router.beforeEach((to, from, next) => {
-    const publicPages = ['/', '/login'];
-    const authRequired = !publicPages.includes(to.path);
-    const loggedIn = isAuthenticated();
-
-    if (authRequired && !loggedIn) {
-        return next('/');
-    }
-
-    if (loggedIn && (to.path === '/' || to.path === '/login')) {
-        return next('/home');
-    }
-
-    next();
 });
 
 router.afterEach((to) => {
@@ -61,7 +41,6 @@ const app = {
         },
         logoutNow() {
             this.showLogoutConfirm = false;
-            localStorage.removeItem('token');
             if (this.logoutCallback) this.logoutCallback();
         },
         cancelLogout() {
@@ -114,6 +93,7 @@ const app = {
         </ul>
     </nav>
 
+    <!-- POP-UP DE CONFIRMAÇÃO DE LOGOUT -->
     <div v-if="showLogoutConfirm" class="logout-popup">
         <div class="popup-content">
             <p id="interrogacao">?</p>
