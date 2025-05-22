@@ -1,7 +1,8 @@
 .home {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    align-items: center;
+    gap: 2.5rem;
 }
 
 #titulo {
@@ -20,6 +21,7 @@
     grid-template-columns:1fr 1fr 1fr 1fr;
     gap: 2rem;
     justify-items: center;
+    padding-top: 0.5rem;
 }
 
 .card-brinquedo {
@@ -43,7 +45,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at center, #fff 80%, transparent 100%);
+    background-color: #fff;
+    /* background: radial-gradient(circle at center, #fff 80%, transparent 100%); */
 }
 
 .img-brinquedo img {
@@ -77,17 +80,138 @@
 
 #btn-comprar {
     width: 70%;
+    height: 2.5rem;
     text-transform: uppercase;
     border: none;
     background-color: var(--primary-color);
     color: var(--text-color);
     border-radius: 10px;
-    padding: 0.5rem;
     cursor: pointer;
     font-weight: 600;
     font-size: 1rem;
+    display: flex;
+    padding-top: 3px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+}
+
+#btn-comprar i {
+    margin-top: 2px;
 }
 
 #btn-comprar:hover {
     background-color: var(--primary-color-hover);
+    gap: 0.8rem;
+    transition: 0.3s;
+}
+
+.select-brinquedo {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    gap: 2.5rem;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    border-radius: 0.8rem;
+    padding: 2.5rem 2rem 2rem 2rem;
+}
+
+.conteiner-brinquedo-top {
+    display: flex;
+    height: 25rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+}
+
+.info-brinquedo {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+#descricao-brinquedo-detalhes {
+    font-size: 2.5rem;
+    font-weight: 500;
+    width: 100%;
+}
+
+.preco-brinquedo-detalhes {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#dinheiro-detalhes {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#pix-detalhes {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--destaque-color);
+}
+
+.conteiner-brinquedo-bottom {
+    display: flex;
+    flex-direction: column;
+    height: 20rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border-radius: 0.8rem;
+    background-color: var(--complementary-color);
+}
+
+#img-brinquedo-selecionado {
+    width: 24rem;
+    height: width;
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+#btn-comprar-detalhes {
+    width: 100%;
+    height: 3rem;
+    text-transform: uppercase;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: flex;
+    padding-top: 4px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    transition: 0.3s;
+    gap: 0.5rem;
+}
+
+#btn-comprar-detalhes i {
+    margin-top: 2px;
+}
+
+#btn-comprar-detalhes:hover {
+    background-color: var(--primary-color-hover);
+    gap: 0.8rem;
+    transition: 0.3s;
 }

@@ -86,8 +86,9 @@ export const Catalogo = {
             <p v-if="!carregandoCategorias && categorias.length === 0" id="sem-brinquedos">Ops! Por enquanto, nenhuma categoria foi cadastrada no sistema.</p>
         </div>
 
-        <button id="btn-voltar-categorias" v-if="categoriaSelecionada" @click="categoriaSelecionada = null; brinquedos = []; buscouBrinquedos = false;"><i class="fi fi-rr-arrow-small-left"></i> Voltar para todas as categorias</button>
-
+        <div id="btn-voltar">
+            <button v-if="categoriaSelecionada" @click="categoriaSelecionada = null; brinquedos = []; buscouBrinquedos = false;"><i class="fi fi-rr-arrow-small-left"></i> Voltar</button>
+        </div>
         <div v-if="categoriaSelecionada">
             <div class="destaques" v-if="brinquedos.length > 0">
                 <div v-for="brinquedo in brinquedos" :key="brinquedo.id || brinquedo.nome" class="card-brinquedo">
@@ -99,7 +100,7 @@ export const Catalogo = {
                         <p id="dinheiro">R$ {{ brinquedo.preco.toFixed(2) }}</p>
                         <p id="pix">R$ {{ (brinquedo.preco * 0.9).toFixed(2) }} no PIX</p>
                     </div>
-                    <button id="btn-comprar">Comprar</button>
+                    <button id="btn-comprar"><i class="fi fi-sr-shopping-cart"></i>Comprar</button>
                 </div>
             </div>
 

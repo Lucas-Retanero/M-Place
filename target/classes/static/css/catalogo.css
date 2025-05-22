@@ -1,7 +1,7 @@
 .catalogo {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2.5rem;
 }
 
 .categorias {
@@ -11,6 +11,7 @@
     grid-template-columns:1fr 1fr 1fr 1fr 1fr;
     gap: 2rem;
     justify-items: center;
+    padding-top: 0.5rem;
 }
 
 .categoria {
@@ -61,29 +62,37 @@
 
 } */
 
-#btn-voltar-categorias {
+#btn-voltar {
     width: 100%;
-    height: 3.5rem;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+#btn-voltar button {
+    width: 8rem;
+    height: 2.5rem;
     background-color: var(--primary-color);
     color: var(--text-color);
     border: none;
     border-radius: 0.6rem;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    padding-right: 1rem;
 }
 
-#btn-voltar-categorias:hover {
+#btn-voltar button:hover {
     background-color: var(--primary-color-hover);
 }
 
-#btn-voltar-categorias i {
+#btn-voltar i {
     padding-top: 5px;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 #sem-brinquedos {
