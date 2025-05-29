@@ -3,3 +3,158 @@
     flex-direction: column;
     gap: 3rem;
 }
+
+.tabela-brinquedos, .tabela-categorias {
+    width: 100%;
+    height: 40vh;
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid var(--complementary-color);
+    border-radius: 1rem;
+}
+
+.tabela-brinquedos td img, .tabela-categorias td img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100px; /* ajuste conforme necessário */
+    height: auto;
+}
+
+.tabela-brinquedos td,
+.tabela-categorias td {
+    border: 1px solid var(--complementary-color);
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.tabela-brinquedos th, .tabela-categorias th {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    border: 1px solid var(--complementary-color);
+    padding: 0.5rem;
+    padding-top: 0.6rem;
+}
+
+.tabela-brinquedos tr, .tabela-categorias tr {
+     background-color: var(--secondary-color);
+     color: var(--text-color);
+}
+
+#editar-tabela:hover {
+    text-decoration: underline;
+}
+
+#excluir-tabela {
+    color: var(--erro-color);
+}
+
+#excluir-tabela:hover {
+    text-decoration: underline;
+}
+
+#btn-novo-brinquedo, #btn-nova-categoria {
+    width: 12rem;
+    height: 2.5rem;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    padding-top: 0.65rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+#btn-novo-brinquedo:hover, #btn-nova-categoria:hover {
+    background-color: var(--primary-color-hover);
+    gap: 0.8rem;
+    transition: var(--transition);
+}
+
+#btn-novo-brinquedo i, #btn-nova-categoria i {
+    margin-top: 2px;
+}
+
+.modal-criar-brinquedo {
+    width: 50%;
+    height: 70vh;
+    background-color: var(--secondary-color);
+	border-radius: 0.8rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem;
+    border: solid 1px var(--complementary-color);
+}
+
+.modal-criar-brinquedo h2 {
+    width: 80%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    height: 3.5rem;
+    cursor: default;
+    border-bottom: 1.5px solid var(--primary-color);
+}
+
+.form-brinquedo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btns-form-brinquedo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.btns-form-brinquedo button {
+	width: 10rem;
+	height: 3rem;
+	background-color: var(--primary-color);
+	color: var(--text-color);
+	border: none;
+	padding-top: 2px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.btns-form-brinquedo button:hover {
+    background-color: var(--primary-color-hover);
+
+}
+
+#btn-cancelar {
+    background-color: var(--complementary-color-2);
+
+}
+
+#btn-cancelar:hover {
+    background-color: var(--complementary-color);
+
+}
+

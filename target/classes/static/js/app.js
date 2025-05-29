@@ -94,7 +94,7 @@ const app = {
     </nav>
 
     <!-- POP-UP DE CONFIRMAÇÃO DE LOGOUT -->
-    <div v-if="showLogoutConfirm" class="logout-popup">
+    <div v-if="showLogoutConfirm" class="popup-overlay">
         <div class="popup-content">
             <p id="interrogacao">?</p>
             <p>Você está prestes a sair. Deseja continuar?</p>
