@@ -81,13 +81,29 @@ const app = {
       localStorage.removeItem("usuarioNome");
       localStorage.removeItem("usuarioEmail");
       localStorage.removeItem("permissao");
+      this.permissao = null;
       this.showLogoutConfirm = false;
       this.$router.push('/');
     },
     cancelLogout() {
       this.showLogoutConfirm = false;
       this.logoutCallback = null;
+    },
+    atualizarPermissao() {
+      this.permissao = localStorage.getItem('permissao') || null;
     }
+  },
+  mounted() {
+    window.addEventListener('storage', this.atualizarPermissao);
+
+    const originalSetItem = localStorage.setItem;
+    localStorage.setItem = (...args) => {
+      originalSetItem.apply(localStorage, args);
+      if (args[0] === 'permissao') this.atualizarPermissao();
+    };
+  },
+  beforeUnmount() {
+    window.removeEventListener('storage', this.atualizarPermissao);
   },
   template: `
     <nav v-if="$route.path !== '/' && $route.path !== '/login'">

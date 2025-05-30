@@ -1,5 +1,4 @@
 package br.edu.fatecitaquera.mplayce.controller;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.fatecitaquera.mplayce.model.Usuário;
 import br.edu.fatecitaquera.mplayce.repository.UsuarioRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
+import java.beans.PropertyDescriptor;
+import java.util.Arrays;
 
 @RestController
 public class UsuarioController {
@@ -29,6 +33,14 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository repository;
 
+    private String[] getNullPropertyNames(Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        return Arrays.stream(src.getPropertyDescriptors())
+                .map(pd -> pd.getName())
+                .filter(propertyName -> src.getPropertyValue(propertyName) == null)
+                .toArray(String[]::new);
+    }
+    
     @PostMapping("/usuario")
     public ResponseEntity<Map<String, String>> criar(@RequestBody Usuário usuario) {
         String senhaCodificada = passwordEncoder.encode(usuario.getSenha());
@@ -65,15 +77,25 @@ public class UsuarioController {
 
     @PutMapping("/usuario/{id}")
     public ResponseEntity<String> atualizar(@PathVariable int id, @RequestBody Usuário usuario) {
-        if (!repository.existsById(id)) {
+        Optional<Usuário> usuarioExistenteOpt = repository.findById(id);
+        if (usuarioExistenteOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("❌ Usuário com ID " + id + " não encontrado.");
         }
 
-        usuario.setId(id);
-        usuario.setSenha(usuario.getSenha());
-        repository.save(usuario);
+        Usuário usuarioExistente = usuarioExistenteOpt.get();
 
+        String[] ignorar = getNullPropertyNames(usuario);
+        String[] ignorarComId = Arrays.copyOf(ignorar, ignorar.length + 1);
+        ignorarComId[ignorar.length] = "id";
+
+        BeanUtils.copyProperties(usuario, usuarioExistente, ignorarComId);
+
+        if (usuario.getSenha() != null) {
+            usuarioExistente.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        }
+
+        repository.save(usuarioExistente);
         return ResponseEntity.ok("✅ Usuário atualizado com sucesso!");
     }
 

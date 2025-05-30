@@ -80,7 +80,7 @@ export const Login = {
             email: '',
             senha: '',
             confirmarSenha: '',
-            permissao: 2
+            permissao: 1
           };
           this.mostrarSenhaCadastro = false;
           setTimeout(() => {
@@ -144,8 +144,7 @@ export const Login = {
         nome: '',
         email: '',
         senha: '',
-        confirmarSenha: '',
-        permissao: 2
+        permissao: 1
       };
       this.mostrarSenhaLogin = false;
       this.mostrarSenhaCadastro = false;
