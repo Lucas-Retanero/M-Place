@@ -19,12 +19,33 @@ const router = VueRouter.createRouter({
     routes
 });
 
+function sair() {
+  localStorage.removeItem("usuarioId");
+  localStorage.removeItem("usuarioNome");
+  localStorage.removeItem("usuarioEmail");
+}
+
 router.afterEach((to) => {
     if (to.path === '/' || to.path === '/login') {
         document.body.classList.add('login-background');
     } else {
         document.body.classList.remove('login-background');
     }
+});
+
+router.beforeEach((to, from, next) => {
+  const id = localStorage.getItem("usuarioId");
+
+  if (!id && to.path !== '/') {
+    next('/');
+  } else if (id && to.path === '/') {
+    next('/home');
+  } else if (!id && to.path === '/') {
+    sair();
+    next();
+  } else {
+    next();
+  }
 });
 
 const app = {
@@ -34,20 +55,27 @@ const app = {
             logoutCallback: null
         };
     },
-    methods: {
-        confirmLogout(navigate) {
-            this.logoutCallback = navigate;
-            this.showLogoutConfirm = true;
-        },
-        logoutNow() {
-            this.showLogoutConfirm = false;
-            if (this.logoutCallback) this.logoutCallback();
-        },
-        cancelLogout() {
-            this.showLogoutConfirm = false;
-            this.logoutCallback = null;
-        }
-    },
+	methods: {
+	  handleLogout() {
+	    this.showLogoutConfirm = true;
+	  },
+	  confirmLogout(navigate) {
+	    this.logoutCallback = navigate;
+	    this.showLogoutConfirm = true;
+	  },
+	  logoutNow() {
+	    localStorage.removeItem("usuarioId");
+	    localStorage.removeItem("usuarioNome");
+	    localStorage.removeItem("usuarioEmail");
+
+	    this.showLogoutConfirm = false;
+	    this.$router.push('/');
+	  },
+	  cancelLogout() {
+	    this.showLogoutConfirm = false;
+	    this.logoutCallback = null;
+	  }
+	},
     template: `
     <nav v-if="$route.path !== '/' && $route.path !== '/login'">
         <ul>
@@ -86,9 +114,9 @@ const app = {
             </router-link>
 
             <router-link to="/" custom v-slot="{ navigate, isActive }">
-                <li @click.prevent="confirmLogout(navigate)" :class="{ active: isActive }" id="logout">
-                    <i class="bx bx-log-out"></i><p>Sair</p>
-                </li>
+				<li @click.prevent="handleLogout" :class="{ active: isActive }" id="logout">
+				  <i class="bx bx-log-out"></i><p>Sair</p>
+				</li>
             </router-link>
         </ul>
     </nav>

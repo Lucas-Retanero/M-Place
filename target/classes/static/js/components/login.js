@@ -32,11 +32,22 @@ export const Login = {
           if (!response.ok) throw new Error("Usuário ou senha inválidos. Tente novamente.");
           return response.json();
         })
-        .then(data => {
-          this.erroLogin = '';
-          localStorage.setItem("usuarioNome", data.usuario.nome);
-          window.location.href = "#/home";
-        })
+		.then(data => {
+		  this.erroLogin = '';
+		  localStorage.setItem("usuarioId", data.usuario.idUsuario);
+		  localStorage.setItem("usuarioNome", data.usuario.nome);
+		  localStorage.setItem("permissao", data.usuario.tipo);
+
+		  const valor = localStorage.getItem("usuarioId");
+		  if (valor !== null) {
+		    console.log("ID salvo:", valor);
+			console.log("Resposta da API:", data);
+		  } else {
+		    console.log('ID não encontrado no localStorage.');
+		  }
+
+		  this.$router.push('/home');
+		})
         .catch(error => {
           this.erroLogin = error.message;
         });
