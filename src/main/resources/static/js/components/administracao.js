@@ -27,9 +27,11 @@ export const Administracao = {
                 urlimagem: ''
             },
             categoriaEditando: null,
+            tabelaAtual: 'categorias',
+            tituloPagina: 'Administração de Categorias',
             // Confirmação de exclusão
             showDeleteConfirm: false,
-            deleteType: '', // 'brinquedo' ou 'categoria'
+            deleteType: '',
             deleteId: null,
             // Mensagem de sucesso
             showMensagemSucesso: false,
@@ -159,29 +161,31 @@ export const Administracao = {
         },
         // Confirmação de Exclusão
         deleteNow() {
-            const url = this.deleteType === 'brinquedo'
-                ? `http://localhost:8080/brinquedo/${this.deleteId}`
-                : `http://localhost:8080/categoria/${this.deleteId}`;
+    const url = this.deleteType === 'brinquedo'
+        ? `http://localhost:8080/brinquedo/${this.deleteId}`
+        : `http://localhost:8080/categoria/${this.deleteId}`;
 
-            fetch(url, {
-                method: 'DELETE'
-            })
-            .then(() => {
-                if (this.deleteType === 'brinquedo') {
-                    this.carregarBrinquedos();
-                    this.exibirMensagemSucesso("Brinquedo excluído com sucesso!");
-                } else {
-                    this.carregarCategorias();
-                    this.exibirMensagemSucesso("Categoria excluída com sucesso!");
-                }
-            })
-            .catch(err => console.error("Erro ao excluir:", err))
-            .finally(() => {
-                this.showDeleteConfirm = false;
-                this.deleteType = '';
-                this.deleteId = null;
-            });
-        },
+    fetch(url, {
+        method: 'DELETE'
+    })
+    .then(() => {
+        if (this.deleteType === 'brinquedo') {
+            // Remove localmente
+            this.brinquedos = this.brinquedos.filter(b => b.id !== this.deleteId);
+            this.exibirMensagemSucesso("Brinquedo excluído com sucesso!");
+        } else {
+            // Remove localmente
+            this.categorias = this.categorias.filter(c => c.id !== this.deleteId);
+            this.exibirMensagemSucesso("Categoria excluída com sucesso!");
+        }
+    })
+    .catch(err => console.error("Erro ao excluir:", err))
+    .finally(() => {
+        this.showDeleteConfirm = false;
+        this.deleteType = '';
+        this.deleteId = null;
+    });
+},
         limparNovaCategoria() {
     this.novaCategoria = {
         nome: '',
@@ -217,7 +221,15 @@ export const Administracao = {
         },
         fecharMensagemSucesso() {
             this.showMensagemSucesso = false;
-        }
+        },
+        mostrarTabelaCategorias() {
+        this.tabelaAtual = 'categorias';
+        this.tituloPagina = 'Administração de Categorias';
+    },
+    mostrarTabelaBrinquedos() {
+        this.tabelaAtual = 'brinquedos';
+        this.tituloPagina = 'Administração de Brinquedos';
+    }
     },
     computed: {
         mensagemConfirmacaoExclusao() {
@@ -237,12 +249,24 @@ export const Administracao = {
     template: `
     <section class="administracao">
 
-    
+        <h1 id="titulo">{{ tituloPagina }}</h1>
 
-        <h1 id="titulo">Administração de Categorias</h1>
+        <div class="abas-tabelas">
+  <button 
+    :class="{ ativo: tabelaAtual === 'categorias' }" 
+    @click="mostrarTabelaCategorias">
+    <i class="fi fi-sr-catalog"></i>Categorias
+  </button>
+  <button 
+    :class="{ ativo: tabelaAtual === 'brinquedos' }" 
+    @click="mostrarTabelaBrinquedos">
+    <i class="fi fi-sc-teddy-bear"></i>Brinquedos
+  </button>
+</div>
+
 
         <!-- Tabela de Categorias -->
-        <table v-if="categorias.length > 0" class="tabela-categorias">
+        <table v-if="tabelaAtual === 'categorias' && categorias.length > 0" class="tabela-categorias">
             <thead>
                 <tr>
                     <th>Imagem</th>
@@ -261,8 +285,8 @@ export const Administracao = {
                 </tr>
             </tbody>
         </table>
-        <p v-if="categorias.length === 0">Nenhuma categoria cadastrada.</p>
-        <button id="btn-nova-categoria" @click.prevent="mostrarCriarCategoria = true">Nova Categoria<i class="fi fi-br-plus"></i></button>
+        <p v-if="tabelaAtual === 'categorias' && categorias.length === 0" id="sem-brinquedos">Nenhuma categoria cadastrada no sistema.</p>
+        <button v-if="tabelaAtual === 'categorias'" id="btn-nova-categoria" @click.prevent="mostrarCriarCategoria = true">Nova Categoria<i class="fi fi-br-plus"></i></button>
 
         <!-- Modal: Criar Categoria -->
 <div class="popup-overlay" v-if="mostrarCriarCategoria">
@@ -311,11 +335,8 @@ export const Administracao = {
   </div>
 </div>
 
-        <h1 id="titulo">Administração de Brinquedos</h1>
-
         <!-- Tabela de Brinquedos -->
-        <p v-if="carregando">Carregando brinquedos...</p>
-        <table v-if="!carregando && brinquedos.length > 0" class="tabela-brinquedos">
+        <table v-if="tabelaAtual === 'brinquedos' && brinquedos.length > 0" class="tabela-brinquedos">
             <thead>
                 <tr>
                     <th>Imagem</th>
@@ -340,8 +361,8 @@ export const Administracao = {
                 </tr>
             </tbody>
         </table>
-        <p v-if="!carregando && brinquedos.length === 0">Nenhum brinquedo cadastrado.</p>
-        <button id="btn-novo-brinquedo" @click.prevent="mostrarCriar = true">Novo Brinquedo<i class="fi fi-br-plus"></i></button>
+        <p v-if="tabelaAtual === 'brinquedos' && brinquedos.length === 0" id="sem-brinquedos">Nenhum brinquedo cadastrado no sistema.</p>
+        <button v-if="tabelaAtual === 'brinquedos'" id="btn-novo-brinquedo" @click.prevent="mostrarCriar = true">Novo Brinquedo<i class="fi fi-br-plus"></i></button>
 
         <!-- Modal: Criar Brinquedo -->
 <div class="popup-overlay" v-if="mostrarCriar">
