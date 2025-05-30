@@ -83,8 +83,8 @@ export const Catalogo = {
                 </div>
                 <p>{{ categoria.nome }}</p>
             </div>
-            <p v-if="!carregandoCategorias && categorias.length === 0" id="sem-brinquedos">Ops! Por enquanto, nenhuma categoria foi cadastrada no sistema.</p>
         </div>
+        <p v-if="!carregandoCategorias && categorias.length === 0" id="sem-brinquedos">Ops! Por enquanto, nenhuma categoria foi cadastrada no sistema.</p>
 
         <div id="btn-voltar">
             <button v-if="categoriaSelecionada" @click="categoriaSelecionada = null; brinquedos = []; buscouBrinquedos = false;"><i class="fi fi-rr-arrow-small-left"></i> Voltar</button>
