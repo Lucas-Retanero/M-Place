@@ -7,7 +7,7 @@ export const Login = {
         email: '',
         senha: '',
         confirmarSenha: '',
-        permissao: 2
+        permissao: 1
       },
       erroLogin: '',
       sucessoCriacao: '',
@@ -38,9 +38,9 @@ export const Login = {
 		  localStorage.setItem("usuarioNome", data.usuario.nome);
 		  localStorage.setItem("permissao", data.usuario.tipo);
 
-		  const valor = localStorage.getItem("usuarioId");
+		  const valor = localStorage.getItem("permissao");
 		  if (valor !== null) {
-		    console.log("ID salvo:", valor);
+			console.log("Permissao salvo:", valor);
 			console.log("Resposta da API:", data);
 		  } else {
 		    console.log('ID não encontrado no localStorage.');
