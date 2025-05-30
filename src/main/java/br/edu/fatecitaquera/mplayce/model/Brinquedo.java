@@ -1,5 +1,6 @@
 package br.edu.fatecitaquera.mplayce.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class Brinquedo {
     private String descricao;
     private String detalhes;
     private String marca;
+    @Column(length = 10000)
     private String urlimagem;
     
     // Construtores;
