@@ -34,7 +34,7 @@ export const Login = {
         })
         .then(data => {
           this.erroLogin = '';
-          localStorage.setItem("token", data.token);
+          localStorage.setItem("usuarioNome", data.usuario.nome);
           window.location.href = "#/home";
         })
         .catch(error => {

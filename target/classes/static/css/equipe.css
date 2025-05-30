@@ -1,5 +1,49 @@
-.equipe {
+.equipecard {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+	margin-top: 4rem; 
+    padding-top: 1rem;
+}
+
+.perfil-container {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    align-items: center;
+    gap: 0.8rem;
+    width: 16rem;
+    min-height: 18rem;
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.perfil-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.perfil-container img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+}
+
+.perfil-container .Name {
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.perfil-container .description {
+    font-size: 1rem;
+    color: var(--text-color);
+    text-align: center;
 }
