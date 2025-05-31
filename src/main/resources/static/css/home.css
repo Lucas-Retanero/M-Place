@@ -130,7 +130,7 @@
 }
 
 .info-brinquedo {
-    width: 40%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -165,15 +165,43 @@
 }
 
 .conteiner-brinquedo-bottom {
-    display: flex;
-    flex-direction: column;
-    height: 20rem;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    border-radius: 0.8rem;
-    background-color: var(--complementary-color);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--complementary-color);
+  border-radius: 1rem;
+  margin-top: 1rem;
+  color: var(--text-color);
 }
+
+.info-card {
+  background-color: var(--secondary-color);
+  padding: 1rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 10px var(--primary-color);
+  transition: transform 0.2s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.info-card h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  flex-direction: row;
+  gap: 0.5rem;
+  color: #00ffff;
+}
+
+.info-card p {
+  margin: 0;
+  font-size: 1rem;
+  color: #ccc;
+}
+
 
 #img-brinquedo-selecionado {
     width: 24rem;

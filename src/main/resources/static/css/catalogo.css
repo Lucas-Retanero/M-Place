@@ -1,7 +1,9 @@
 .catalogo {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 2.5rem;
+    width: 100%;
 }
 
 .categorias {
@@ -45,22 +47,6 @@
     height: 100%;
     border-radius: 0.8rem;
 }
-
-/* #add-categoria {
-    font-size: 6rem;
-    height: 6rem;
-    width: 6rem;
-    border-radius: 50%;
-    background-color: var(--complementary-color);
-    color: var(--secondary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 5px;
-
-} */
 
 #btn-voltar {
     width: 100%;

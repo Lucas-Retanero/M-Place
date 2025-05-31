@@ -22,6 +22,7 @@ export const Administracao = {
             categorias: [],
             mostrarCriarCategoria: false,
             mostrarEditarCategoria: false,
+            carregandoCategorias: true,
             novaCategoria: {
                 nome: '',
                 urlimagem: ''
@@ -113,12 +114,18 @@ export const Administracao = {
 
         // Categorias
         carregarCategorias() {
-            fetch("http://localhost:8080/categoria")
-                .then(res => res.json())
-                .then(data => {
-                    this.categorias = data;
-                })
-                .catch(err => console.error("Erro ao carregar categorias:", err));
+    this.carregandoCategorias = true;
+    fetch("http://localhost:8080/categoria")
+        .then(res => res.json())
+        .then(data => {
+            this.categorias = data;
+        })
+        .catch(err => {
+            console.error("Erro ao carregar categorias:", err);
+        })
+        .finally(() => {
+            this.carregandoCategorias = false;
+        });
         },
         salvarNovaCategoria() {
             fetch("http://localhost:8080/categoria", {
@@ -285,8 +292,8 @@ export const Administracao = {
                 </tr>
             </tbody>
         </table>
-        <p v-if="tabelaAtual === 'categorias' && categorias.length === 0" id="sem-brinquedos">Nenhuma categoria cadastrada no sistema.</p>
-        <button v-if="tabelaAtual === 'categorias'" id="btn-nova-categoria" @click.prevent="mostrarCriarCategoria = true">Nova Categoria<i class="fi fi-br-plus"></i></button>
+        <p  v-if="tabelaAtual === 'categorias' && !carregandoCategorias && categorias.length === 0" id="sem-brinquedos">Nenhuma categoria cadastrada no sistema.</p>
+        <button v-if="tabelaAtual === 'categorias' && !carregandoCategorias" id="btn-nova-categoria" @click.prevent="mostrarCriarCategoria = true">Nova Categoria<i class="fi fi-br-plus"></i></button>
 
         <!-- Modal: Criar Categoria -->
 <div class="popup-overlay" v-if="mostrarCriarCategoria">
