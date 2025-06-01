@@ -1,5 +1,13 @@
 -- Inserção de usuário
 INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Admin Master', 'adminMaster@gmail.com', 'admin123', 3);
+INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Lucas Retanero', 'lucas.retanero@gmail.com', 'senha123', 1);
+INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Kevyn Cavalcanti', 'kevyn.cavalcanti@gmail.com', 'senha123', 1);
+INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Matheus Lopez', 'matheus.lopez@gmail.com', 'senha123', 1);
+INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Guilherme Souza', 'guilherme.souza@gmail.com', 'senha123', 1);
+INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Gabriel Castro', 'gabriel.castro@gmail.com', 'senha123', 1);
+INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Westes Mesquita', 'westes.mesquita@gmail.com', 'senha123', 1);
+INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Afonso Rocha', 'afonso.rocha@gmail.com', 'senha123', 1);
+
 
 -- Inserção de categorias
 INSERT INTO categoria (nome, urlimagem) VALUES ('Minecraft', 'https://play-lh.googleusercontent.com/27O5tpaYE82W6m30rJ_MX3-UvshlDM6O8oXDxb6GseYW2T7P8UNT19727MGmz-0q3w');

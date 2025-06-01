@@ -1,9 +1,15 @@
 package br.edu.fatecitaquera.mplayce.controller;
+
+import java.beans.PropertyDescriptor;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.fatecitaquera.mplayce.model.Usuário;
 import br.edu.fatecitaquera.mplayce.repository.UsuarioRepository;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeanWrapperImpl;
-import java.beans.PropertyDescriptor;
-import java.util.Arrays;
 
 @RestController
 public class UsuarioController {
@@ -33,20 +34,24 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository repository;
 
+    @Autowired
+    private UsuarioSseController usuarioSseController;
+
     private String[] getNullPropertyNames(Object source) {
         final BeanWrapper src = new BeanWrapperImpl(source);
         return Arrays.stream(src.getPropertyDescriptors())
-                .map(pd -> pd.getName())
+                .map(PropertyDescriptor::getName)
                 .filter(propertyName -> src.getPropertyValue(propertyName) == null)
                 .toArray(String[]::new);
     }
-    
+
     @PostMapping("/usuario")
     public ResponseEntity<Map<String, String>> criar(@RequestBody Usuário usuario) {
         String senhaCodificada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCodificada);
 
         repository.save(usuario);
+        usuarioSseController.notificarClientes(repository.findAll());
 
         Map<String, String> resposta = new HashMap<>();
         resposta.put("mensagem", "✅ Usuário criado com sucesso!");
@@ -96,6 +101,8 @@ public class UsuarioController {
         }
 
         repository.save(usuarioExistente);
+        usuarioSseController.notificarClientes(repository.findAll());
+
         return ResponseEntity.ok("✅ Usuário atualizado com sucesso!");
     }
 
@@ -105,7 +112,10 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("❌ Usuário com ID " + id + " não encontrado.");
         }
+
         repository.deleteById(id);
+        usuarioSseController.notificarClientes(repository.findAll());
+
         return ResponseEntity.ok("✅ Usuário deletado com sucesso!");
     }
 
