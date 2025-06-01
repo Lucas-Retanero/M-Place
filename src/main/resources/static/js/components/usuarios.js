@@ -10,6 +10,7 @@ export const Usuarios = {
             showMensagemSucesso: false,
             mensagemSucesso: '',
             eventSource: null,
+            showEditPermissaoPopup: false,
         };
     },
     methods: {
@@ -28,28 +29,41 @@ export const Usuarios = {
         editarPermissao(usuario) {
             this.usuarioEditando = usuario;
             this.novaPermissao = usuario.permissao;
+            this.showEditPermissaoPopup = true;
         },
         salvarPermissao() {
-            const usuarioAtualizado = {
-                permissao: parseInt(this.novaPermissao)
-            };
+    const usuarioAtualizado = {
+        permissao: parseInt(this.novaPermissao)
+    };
 
-            fetch(`http://localhost:8080/usuario/${this.usuarioEditando.id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(usuarioAtualizado)
-            })
-            .then(() => {
-                this.usuarioEditando = null;
-                this.novaPermissao = null;
-                this.exibirMensagemSucesso("Permissão atualizada com sucesso!");
-                // Atualização automática via SSE
-            })
-            .catch(err => console.error("Erro ao editar permissão:", err));
-        },
+    const id = this.usuarioEditando.id; // ⚠️ Salve o ID antes
+
+    fetch(`http://localhost:8080/usuario/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(usuarioAtualizado)
+    })
+    .then(() => {
+        // Atualiza localmente
+        const index = this.usuarios.findIndex(u => u.id === id);
+        if (index !== -1) {
+            this.usuarios[index].permissao = usuarioAtualizado.permissao;
+        }
+
+        // Fecha popup e mostra mensagem de sucesso
+        this.showEditPermissaoPopup = false;
+        this.exibirMensagemSucesso("Permissão atualizada com sucesso!");
+
+        // Limpa os campos depois
+        this.usuarioEditando = null;
+        this.novaPermissao = null;
+    })
+    .catch(err => console.error("Erro ao editar permissão:", err));
+},
         cancelarEdicaoPermissao() {
             this.usuarioEditando = null;
             this.novaPermissao = null;
+            this.showEditPermissaoPopup = false;
         },
         confirmarExclusao(usuario) {
             this.usuarioParaExcluir = usuario;
@@ -60,8 +74,9 @@ export const Usuarios = {
                 method: 'DELETE'
             })
             .then(() => {
+                // Remove o usuário da lista localmente
+                this.usuarios = this.usuarios.filter(u => u.id !== this.usuarioParaExcluir.id);
                 this.exibirMensagemSucesso("Usuário excluído com sucesso!");
-                // Atualização automática via SSE
             })
             .catch(err => console.error("Erro ao excluir usuário:", err))
             .finally(() => {
@@ -87,21 +102,18 @@ export const Usuarios = {
             return "Desconhecido";
         },
         iniciarSSE() {
-    this.eventSource = new EventSource("http://localhost:8080/sse/usuario");
+            this.eventSource = new EventSource("http://localhost:8080/sse/usuario");
 
-    this.eventSource.addEventListener("atualizacao", (event) => {
-        console.log("Evento SSE recebido:", event.data);
-        const usuariosAtualizados = JSON.parse(event.data);
-        // Substitui toda a lista de usuários pelo conteúdo recebido
-        this.usuarios = usuariosAtualizados;
-    });
+            this.eventSource.addEventListener("atualizacao", (event) => {
+                console.log("Evento SSE recebido:", event.data);
+                const usuariosAtualizados = JSON.parse(event.data);
+                this.usuarios = usuariosAtualizados;
+            });
 
-    this.eventSource.onerror = (err) => {
-        console.error("Erro na conexão SSE:", err);
-        // Opcional: fechar e tentar reconectar ou avisar o usuário
-    };
-},
-
+            this.eventSource.onerror = (err) => {
+                console.error("Erro na conexão SSE:", err);
+            };
+        },
     },
     mounted() {
         this.carregarUsuarios();
@@ -131,45 +143,52 @@ export const Usuarios = {
                 <tr v-for="usuario in usuarios" :key="usuario.id">
                     <td>{{ usuario.nome }}</td>
                     <td>{{ usuario.email }}</td>
-                    <td v-if="usuarioEditando && usuarioEditando.id === usuario.id">
-                        <select v-model="novaPermissao" 
-                                style="padding: 0.3rem; border-radius: 5px; border: 1px solid var(--complementary-color); background-color: var(--text-color); color: var(--bg-color);">
-                            <option value="1">Usuário</option>
-                            <option value="2">Admin</option>
-                            <option value="3">Admin Master</option>
-                        </select>
-                    </td>
-                    <td v-else>{{ nomePermissao(usuario.permissao) }}</td>
+                    <td>{{ nomePermissao(usuario.permissao) }}</td>
                     <td>
-                        <template v-if="usuarioEditando && usuarioEditando.id === usuario.id">
-                            <button id="btn-editar-tabela" @click="salvarPermissao">Salvar</button>
-                            <button id="btn-cancelar" @click="cancelarEdicaoPermissao">Cancelar</button>
-                        </template>
-                        <template v-else>
-                            <button id="btn-editar-tabela" @click="editarPermissao(usuario)">Editar Permissão</button>
-                            <button id="btn-excluir-tabela" @click="confirmarExclusao(usuario)">Excluir</button>
-                        </template>
+                        <button id="btn-editar-tabela" @click="editarPermissao(usuario)">Editar Permissão</button>
+                        <button id="btn-excluir-tabela" @click="confirmarExclusao(usuario)">Excluir</button>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- Confirmação de Exclusão -->
-        <div v-if="showDeleteConfirm" class="popup-overlay">
+        <div v-if="showEditPermissaoPopup" class="popup-overlay">
             <div class="modal-criar-brinquedo" style="max-width: 400px;">
+                <h2>Editar Permissão de {{ usuarioEditando.nome }}</h2>
+                <form class="form-brinquedo" @submit.prevent="salvarPermissao">
+                    <label>Permissão:
+                        <select v-model="novaPermissao"
+                                style="padding: 0.3rem; border-radius: 5px; border: 1px solid var(--complementary-color); background-color: var(--text-color); color: var(--bg-color);">
+                            <option value="1">Usuário</option>
+                            <option value="2">Admin</option>
+                            <option value="3">Admin Master</option>
+                        </select>
+                    </label>
+                    <div class="btns-form-brinquedo" style="justify-content: center; margin-top: 1rem;">
+                        <button type="submit">Salvar</button>
+                        <button type="button" id="btn-cancelar" @click="cancelarEdicaoPermissao">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup-overlay" v-if="showDeleteConfirm">
+            <div class="popup-content">
+                <p id="interrogacao">!</p>
                 <p>Você tem certeza que deseja excluir o usuário <strong>{{ usuarioParaExcluir.nome }}</strong>?</p>
-                <div class="btns-form-brinquedo" style="justify-content: center; margin-top: 1rem;">
-                    <button id="btn-excluir-tabela" @click="excluirUsuario">Sim, excluir</button>
-                    <button id="btn-cancelar" @click="cancelarExclusao">Cancelar</button>
+                <div class="btns-logout">
+                    <button id="btn-sim" @click="excluirUsuario">Sim, excluir</button>
+                    <button @click="cancelarExclusao">Voltar</button>
                 </div>
             </div>
         </div>
 
-        <!-- Mensagem de Sucesso -->
-        <div v-if="showMensagemSucesso" class="popup-overlay" @click.self="fecharMensagemSucesso">
-            <div class="modal-criar-brinquedo" style="max-width: 350px; text-align: center;">
+        <div class="popup-overlay" v-if="showMensagemSucesso">
+            <div class="popup-content">
                 <p>{{ mensagemSucesso }}</p>
-                <button id="btn-editar-tabela" @click="fecharMensagemSucesso">Fechar</button>
+                <div class="btns-logout">
+                    <button @click="fecharMensagemSucesso">Ok</button>
+                </div>
             </div>
         </div>
     </section>
