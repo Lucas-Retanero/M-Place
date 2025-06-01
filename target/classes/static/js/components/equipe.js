@@ -13,6 +13,7 @@ export const Equipe = {
                 <img src="../images/lucas.jpg">
                 <p class="Name">Lucas Retanero</p>
                 <p class="description">Desenvolvedor Front-End Principal</p>
+                <p class="description">RA: 2571392412035</p>
                 <div class="links-perfil">
                     <a href="https://github.com/Lucas-Retanero" target="_blank" class="github-link">
                         <i class="fi fi-brands-github"></i>
@@ -26,6 +27,7 @@ export const Equipe = {
                 <img src="../images/kevyn.png">
                 <p class="Name">Kevyn Cavalcantio</p>
                 <p class="description">Desenvolvedor Back-End Principal</p>
+                <p class="description">RA: 2571392412021</p>
                 <div class="links-perfil">
                     <a href="https://github.com/Kevyn-Cavalcanti" target="_blank" class="github-link">
                         <i class="fi fi-brands-github"></i>

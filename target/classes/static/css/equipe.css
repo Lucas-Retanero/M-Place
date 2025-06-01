@@ -43,6 +43,7 @@
 }
 
 .perfil-container .Name {
+    margin-top: 0.5rem;
     font-weight: 600;
     font-size: 1.3rem;
     color: var(--text-color);
