@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import "https://unpkg.com/open-props/easings.min.css"; /* Para as transições do botão de tema */
 
 /* Configurações gerais */
 html {
@@ -6,228 +7,364 @@ html {
     overflow-x: hidden;
 }
 
+/* Variáveis de tema para o modo escuro (padrão) */
 :root {
-	--primary-color: #6A0DAD;
-	--primary-color-hover: #4a0978;
-	--secondary-color: #1E1E2E;
-	--complementary-color: #2A2A37;
-	--complementary-color-2: #393949;
-	--bg-color: #121212;
-	--bg-color-2: #707070;
-	--destaque-color: #02F1F1;
-	--destaque-color-2: #00c6c6;
-	--text-color: #F0F0F0;
-	--erro-color: #df0e0e;
-	--comfirm-color: #bf0b0b;
-	--comfirm-color-hover: #8f0707;
-	--transition: 0.3s;
-	font-family: "Rajdhani", sans-serif;
+    --primary-color: #6A0DAD;
+    --primary-color-hover: #4a0978;
+    --secondary-color: #1E1E2E;
+    --complementary-color: #2A2A37;
+    --complementary-color-2: #393949;
+    --bg-color: #121212;
+    --bg-color-2: #707070;
+    --destaque-color: #02F1F1;
+    --destaque-color-2: #00c6c6;
+    --text-color: #F0F0F0;
+    --erro-color: #df0e0e;
+    --comfirm-color: #bf0b0b;
+    --comfirm-color-hover: #8f0707;
+    --transition: 0.3s;
+    font-family: "Rajdhani", sans-serif;
+    --icon-fill: var(--text-color); 
+    --icon-fill-hover: var(--primary-color);
 }
 
+/* Variáveis de tema para o modo claro */
+html[data-theme="light"] {
+    --primary-color: #4B0082;
+    --primary-color-hover: #37005e;
+    --secondary-color: #F3F3F3;
+    --complementary-color: #E0E0E0;
+    --complementary-color-2: #D0D0D0;
+    --bg-color: #FFFFFF;
+    --bg-color-2: #CCCCCC;
+    --destaque-color: #02BFBF;
+    --destaque-color-2: #009999;
+    --text-color: #121212;
+    --erro-color: #c40000;
+    --comfirm-color: #005500;
+    --comfirm-color-hover: #003300;
+    --icon-fill: var(--text-color); 
+    --icon-fill-hover: var(--primary-color);
+}
+
+
+/* Estilos do corpo (agora reage a data-theme do html) */
 body {
-	background-color: var(--bg-color);
-	color: var(--text-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--transition), color var(--transition);
 }
 
+/* Seus outros estilos */
 #app {
-	display: flex;
-	flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-	background-color: var(--secondary-color);
-	width: 100%;
-	height: 6rem;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	border-left: solid 1px var(--complementary-color);
-	border-bottom: solid 1px var(--bg-color);
-	gap: 0.5rem;
+    background-color: var(--secondary-color);
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-left: solid 1px var(--complementary-color);
+    border-bottom: solid 1px var(--bg-color);
+    gap: 0.5rem;
+    position: relative;
+	padding: 1.5rem; /* Adicionado para posicionar o botão de tema */
 }
 
 header h1 {
-	padding-top: 0.3rem;
-	font-size: 2.8rem;
-	color: var(--primary-color);
-	cursor: default;
+    padding-top: 0.3rem;
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    cursor: default;
 }
 
 #logo {
-	padding: 0;
-	height: 6rem;
+    padding: 0;
+    height: 6rem;
 }
 
 #logo:hover {
-	background-color: var(--secondary-color);
-	cursor: unset;
-	border-bottom: solid 1px var(--complementary-color); 
+    background-color: var(--secondary-color);
+    cursor: unset;
+    border-bottom: solid 1px var(--complementary-color);
 }
 
 #logo i {
-	font-size: 3.5rem;
-	color: var(--primary-color);
+    font-size: 3.5rem;
+    color: var(--primary-color);
 }
 
 nav {
-	background-color: var(--secondary-color);
-	width: 10rem;
-	height: 100vh;
-	
+    background-color: var(--secondary-color);
+    width: 10rem;
+    height: 100vh;
 }
 
 nav ul li {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	border-bottom: solid 1px var(--complementary-color); 
-	gap: 0.3rem;
-	min-height: 6rem;
-	padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 1px var(--complementary-color);
+    gap: 0.3rem;
+    min-height: 6rem;
+    padding: 1.5rem;
 }
 
 nav ul li:hover {
-	background-color: var(--complementary-color);
-	border-bottom: solid 1px var(--secondary-color); 
-	cursor: pointer;
+    background-color: var(--complementary-color);
+    border-bottom: solid 1px var(--secondary-color);
+    cursor: pointer;
 }
 
 nav ul li.active {
-  background-color: var(--complementary-color);
-  border-bottom: solid 1px var(--secondary-color); 
+    background-color: var(--complementary-color);
+    border-bottom: solid 1px var(--secondary-color);
 }
 
-
 nav ul li i {
-	font-size: 1.4rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding-top: 0.4rem;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.4rem;
 }
 
 #logout:hover {
-	color: var(--comfirm-color);
+    color: var(--comfirm-color);
 }
 
 #logout i {
-	font-size: 1.5rem;
-	padding-right: 0.4rem;
+    font-size: 1.5rem;
+    padding-right: 0.4rem;
 }
 
 .popup-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5); /* fundo escurecido */
-	backdrop-filter: blur(5px); /* efeito de desfoque */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* fundo escurecido */
+    backdrop-filter: blur(5px); /* efeito de desfoque */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
 .popup-content {
-	width: 26rem;
-	background-color: var(--secondary-color);
-	border-radius: 0.8rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
-	padding: 2rem;
-	border: solid 1px var(--complementary-color);
+    width: 26rem;
+    background-color: var(--secondary-color);
+    border-radius: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    border: solid 1px var(--complementary-color);
 }
 
 #interrogacao {
-	font-size: 3rem;
-	color: var(--primary-color);
-	height: 5rem;
-	width: 5rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 50%;
-	border: solid 2px var(--primary-color);
-	text-align: center;
-	font-weight: 600;
+    font-size: 3rem;
+    color: var(--primary-color);
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: solid 2px var(--primary-color);
+    text-align: center;
+    font-weight: 600;
 }
 
 .popup-content p {
-	font-size: 1.2rem;
-	font-weight: 500;
-	text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
 }
 
 .btns-logout {
-	display: flex;
-	gap: 1rem;
+    display: flex;
+    gap: 1rem;
 }
 
 .btns-logout button {
-	width: 10rem;
-	height: 3rem;
-	background-color: var(--primary-color);
-	color: var(--text-color);
-	border: none;
-	padding-top: 2px;
-	border-radius: 5px;
-	cursor: pointer;
-	font-weight: 600;
-	font-size: 1rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    width: 10rem;
+    height: 3rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding-top: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btns-logout button:hover {
-	background-color: var(--primary-color-hover);
+    background-color: var(--primary-color-hover);
 }
 
 #btn-sim {
-	background-color: var(--comfirm-color);
+    background-color: var(--comfirm-color);
 }
 
 #btn-sim:hover {
-	background-color: var(--comfirm-color-hover);
+    background-color: var(--comfirm-color-hover);
 }
 
 nav ul li p {
-	font-size: 1.1rem;
-	font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
-
 main {
-	width: 100%;
-	height: calc(100vh - 6.5rem);;
-	padding-top: 2.5rem;
-	padding-left: 3rem;
-	padding-right: 2.5rem;
-	overflow-y: scroll;
+    width: 100%;
+    height: calc(100vh - 6.5rem);
+    padding-top: 2.5rem;
+    padding-left: 3rem;
+    padding-right: 2.5rem;
+    overflow-y: scroll;
 }
 
 main::-webkit-scrollbar {
-	width: 10px;
+    width: 10px;
 }
 
 main::-webkit-scrollbar-track {
-  width: 10px;
+    width: 10px;
 }
 
 main::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  width: 10px;
-  border-radius: 10px;
+    background-color: var(--primary-color);
+    width: 10px;
+    border-radius: 10px;
+}
+
+/* --- Estilos do Botão de Tema --- */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    position: absolute; /* Posição absoluta para o botão de tema */
+    right: 20px;
+	margin-top: 2px;
+	transition: var(--transition); /* Ajuste conforme necessário */
+}
+
+.sun-and-moon {
+    width: 100%;
+    height: 100%;
+	transition: var(--transition);
+}
+
+.sun-and-moon > :is(.moon, .sun, .sun-beams) {
+    transform-origin: center;
+	transition: var(--transition);
+}
+
+.sun-and-moon > :is(.moon, .sun) {
+    fill: var(--icon-fill);
+	transition: var(--transition);
+}
+
+.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
+    fill: var(--icon-fill-hover);
+	transition: var(--transition);
+}
+
+.sun-and-moon > .sun-beams {
+    stroke: var(--icon-fill);
+    stroke-width: 2px;
+	transition: var(--transition);
+}
+
+.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
+    stroke: var(--icon-fill-hover);
+	transition: var(--transition);
+}
+
+html[data-theme="dark"] .sun-and-moon > .sun {
+    transform: scale(1.75);
+	transition: var(--transition);
+}
+
+html[data-theme="dark"] .sun-and-moon > .sun-beams {
+    opacity: 0;
+	transition: var(--transition);
+}
+
+html[data-theme="dark"] .sun-and-moon > .moon > circle {
+    transform: translateX(-7px);
+	transition: var(--transition);
+}
+
+@supports (cx: 1) {
+    html[data-theme="dark"] .sun-and-moon > .moon > circle {
+        cx: 17;
+        transform: translateX(0);
+		transition: var(--transition);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .sun-and-moon > .sun {
+        transition: transform .5s var(--ease-elastic-3);
+    }
+
+    .sun-and-moon > .sun-beams {
+        transition: transform .5s var(--ease-elastic-4), opacity .5s var(--ease-3);
+    }
+
+    .sun-and-moon .moon > circle {
+        transition: transform .25s var(--ease-out-5);
+    }
+
+    @supports (cx: 1) {
+        .sun-and-moon .moon > circle {
+            transition: cx .25s var(--ease-out-5);
+        }
+    }
+
+    html[data-theme="dark"] .sun-and-moon > .sun {
+        transition-timing-function: var(--ease-3);
+        transition-duration: .25s;
+        transform: scale(1.75);
+		transition: var(--transition);
+    }
+
+    html[data-theme="dark"] .sun-and-moon > .sun-beams {
+        transition-duration: .15s;
+        transform: rotateZ(-25deg);
+		transition: var(--transition);
+    }
+
+    html[data-theme="dark"] .sun-and-moon > .moon > circle {
+        transition-duration: .5s;
+        transition-delay: .25s;
+		transition: var(--transition);
+    }
 }
