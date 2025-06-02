@@ -50,10 +50,18 @@
     text-align: center;
 }
 
+html[data-theme="light"] .perfil-container .Name {
+    color: var(--text-color-light);
+}
+
 .perfil-container .description {
     font-size: 1rem;
     color: var(--text-color);
     text-align: center;
+}
+
+html[data-theme="light"] .perfil-container .description {
+    color: var(--text-color-light);
 }
 
 .links-perfil {

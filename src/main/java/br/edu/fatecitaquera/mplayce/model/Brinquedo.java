@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Brinquedo {
@@ -15,10 +16,15 @@ public class Brinquedo {
     private String nome;
     private float preco;
     private String categoria;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String descricao;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String detalhes;
     private String marca;
-    @Column(length = 10000)
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String urlimagem;
     
     // Construtores;

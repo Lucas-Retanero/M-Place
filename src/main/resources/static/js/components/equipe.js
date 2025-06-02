@@ -25,7 +25,7 @@ export const Equipe = {
             </div>
             <div class="perfil-container">
                 <img src="../images/kevyn.png">
-                <p class="Name">Kevyn Cavalcantio</p>
+                <p class="Name">Kevyn Cavalcanti</p>
                 <p class="description">Desenvolvedor Back-End Principal</p>
                 <p class="description">RA: 2571392412021</p>
                 <div class="links-perfil">

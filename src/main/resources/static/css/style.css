@@ -30,19 +30,20 @@ html {
 
 /* Variáveis de tema para o modo claro */
 html[data-theme="light"] {
-    --primary-color: #4B0082;
-    --primary-color-hover: #37005e;
-    --secondary-color: #F3F3F3;
+    --primary-color: #6A0DAD;
+    --primary-color-hover: #500a82;
+    --secondary-color: #dfdfdf;
     --complementary-color: #E0E0E0;
-    --complementary-color-2: #D0D0D0;
-    --bg-color: #FFFFFF;
+    --complementary-color-2: #a0a0a0;
+    --bg-color: #F0F0F0;
     --bg-color-2: #CCCCCC;
-    --destaque-color: #02BFBF;
+    --destaque-color: #00a8a8;
     --destaque-color-2: #009999;
-    --text-color: #121212;
-    --erro-color: #c40000;
-    --comfirm-color: #005500;
-    --comfirm-color-hover: #003300;
+    --tb-color: #888888;
+    --text-color-light: #121212;
+    --erro-color: #df0e0e;
+    --comfirm-color: #bf0b0b;
+    --comfirm-color-hover: #8f0707;
     --icon-fill: var(--text-color); 
     --icon-fill-hover: var(--primary-color);
 }
@@ -53,6 +54,10 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color var(--transition), color var(--transition);
+}
+
+html[data-theme="light"] body {
+    color: var(--text-color-light);
 }
 
 /* Seus outros estilos */
@@ -75,11 +80,16 @@ header {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-left: solid 1px var(--complementary-color);
     border-bottom: solid 1px var(--bg-color);
     gap: 0.5rem;
     position: relative;
 	padding: 1.5rem; /* Adicionado para posicionar o botão de tema */
+}
+
+html[data-theme="light"] header {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border-bottom: solid 1px var(--primary-color);
 }
 
 header h1 {
@@ -89,9 +99,19 @@ header h1 {
     cursor: default;
 }
 
+html[data-theme="light"] header h1 {
+    color: var(--bg-color);
+}
+
 #logo {
     padding: 0;
     height: 6rem;
+    border-right: solid 1px var(--complementary-color);
+}
+
+html[data-theme="light"] #logo {
+    background-color: var(--primary-color);
+    border-right: solid 1px var(--bg-color);
 }
 
 #logo:hover {
@@ -105,10 +125,18 @@ header h1 {
     color: var(--primary-color);
 }
 
+html[data-theme="light"] #logo i {
+    color: var(--bg-color);
+}
+
 nav {
     background-color: var(--secondary-color);
     width: 10rem;
     height: 100vh;
+}
+
+html[data-theme="light"] nav {
+    background-color: var(--primary-color);
 }
 
 nav ul li {
@@ -122,15 +150,28 @@ nav ul li {
     padding: 1.5rem;
 }
 
+html[data-theme="light"] nav ul li {
+    border-bottom: solid 1px var(--bg-color);
+    color: var(--bg-color);
+}
+
 nav ul li:hover {
     background-color: var(--complementary-color);
     border-bottom: solid 1px var(--secondary-color);
     cursor: pointer;
 }
 
+html[data-theme="light"] nav ul li:hover {
+    background-color: var(--primary-color-hover);
+}
+
 nav ul li.active {
     background-color: var(--complementary-color);
     border-bottom: solid 1px var(--secondary-color);
+}
+
+html[data-theme="light"] nav ul li.active {
+    background-color: var(--primary-color-hover);
 }
 
 nav ul li i {
@@ -143,6 +184,10 @@ nav ul li i {
 
 #logout:hover {
     color: var(--comfirm-color);
+}
+
+html[data-theme="light"] #logout:hover {
+    color: var(--erro-color);
 }
 
 #logout i {
@@ -218,6 +263,10 @@ nav ul li i {
     align-items: center;
 }
 
+html[data-theme="light"] .btns-logout button {
+    font-weight: 700;
+}
+
 .btns-logout button:hover {
     background-color: var(--primary-color-hover);
 }
@@ -270,7 +319,7 @@ main::-webkit-scrollbar-thumb {
     width: 35px;
     height: 35px;
     position: absolute; /* Posição absoluta para o botão de tema */
-    right: 20px;
+    right: 25px;
 	margin-top: 2px;
 	transition: var(--transition); /* Ajuste conforme necessário */
 }
@@ -291,21 +340,12 @@ main::-webkit-scrollbar-thumb {
 	transition: var(--transition);
 }
 
-.theme-toggle:is(:hover, :focus-visible) > .sun-and-moon > :is(.moon, .sun) {
-    fill: var(--icon-fill-hover);
-	transition: var(--transition);
-}
-
 .sun-and-moon > .sun-beams {
     stroke: var(--icon-fill);
     stroke-width: 2px;
 	transition: var(--transition);
 }
 
-.theme-toggle:is(:hover, :focus-visible) .sun-and-moon > .sun-beams {
-    stroke: var(--icon-fill-hover);
-	transition: var(--transition);
-}
 
 html[data-theme="dark"] .sun-and-moon > .sun {
     transform: scale(1.75);

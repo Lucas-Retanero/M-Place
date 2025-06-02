@@ -177,6 +177,10 @@
   color: var(--text-color);
 }
 
+html[data-theme="light"] .conteiner-brinquedo-bottom {
+  background-color: var(--complementary-color);
+}
+
 .info-card {
   background-color: var(--secondary-color);
   padding: 1rem;
@@ -185,9 +189,17 @@
   transition: transform 0.2s ease;
 }
 
+html[data-theme="light"] .info-card {
+  background-color: var(--bg-color);
+}
+
 .info-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+html[data-theme="light"] .info-card:hover {
+  box-shadow: 0 0 15px var(--destaque-color);
 }
 
 .info-card h4 {
@@ -195,7 +207,7 @@
   font-size: 1.1rem;
   flex-direction: row;
   gap: 0.5rem;
-  color: #00ffff;
+  color: var(--destaque-color);
 }
 
 .info-card p {
@@ -204,10 +216,14 @@
   color: #ccc;
 }
 
+html[data-theme="light"] .info-card p {
+  color: var(--text-color-light);
+  font-weight: 500;
+}
 
 #img-brinquedo-selecionado {
-    width: 24rem;
-    height: width;
+    height: 100%;
+    border: 1px solid var(--complementary-color);
     border-radius: 0.8rem;
     display: flex;
     justify-content: center;

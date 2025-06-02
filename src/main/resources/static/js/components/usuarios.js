@@ -157,8 +157,7 @@ export const Usuarios = {
                 <h2>Editar Permissão de {{ usuarioEditando.nome }}</h2>
                 <form class="form-brinquedo" @submit.prevent="salvarPermissao">
                     <label>Permissão:
-                        <select v-model="novaPermissao"
-                                style="padding: 0.3rem; border-radius: 5px; border: 1px solid var(--complementary-color); background-color: var(--text-color); color: var(--bg-color);">
+                        <select v-model="novaPermissao">
                             <option value="1">Usuário</option>
                             <option value="2">Admin</option>
                             <option value="3">Admin Master</option>

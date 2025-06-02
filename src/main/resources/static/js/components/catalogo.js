@@ -113,31 +113,28 @@ export const Catalogo = {
     </p>
 
     <div class="destaques" v-if="categoriaSelecionada && !selectedBrinquedo && brinquedos.length > 0">
-
-            <div 
-                v-for="brinquedo in brinquedos" 
-                :key="brinquedo.id || brinquedo.nome" 
-                class="card-brinquedo" 
-                @click="verDetalhes(brinquedo)"
-            >
-                <div class="img-brinquedo">
-                    <img :src="brinquedo.urlimagem" :alt="brinquedo.nome" :title="brinquedo.nome" />
-                </div>
-                <p id="descricao-brinquedo">{{ brinquedo.descricao }}</p>
-                <div class="preco-brinquedo">
-                    <p id="dinheiro">R$ {{ brinquedo.preco.toFixed(2) }}</p>
-                    <p id="pix">R$ {{ (brinquedo.preco * 0.9).toFixed(2) }} no PIX</p>
-                </div>
-                <button id="btn-comprar"><i class="fi fi-sr-shopping-cart"></i>Comprar</button>
+        <div 
+            v-for="brinquedo in brinquedos" 
+            :key="brinquedo.id || brinquedo.nome" 
+            class="card-brinquedo" 
+            @click="verDetalhes(brinquedo)"
+        >
+            <div class="img-brinquedo">
+                <img :src="brinquedo.urlimagem" :alt="brinquedo.nome" :title="brinquedo.nome" />
             </div>
-
-
-        <p v-if="buscouBrinquedos && brinquedos.length === 0" id="sem-brinquedos">
-            Ops! Por enquanto, nenhum brinquedo foi cadastrado para a categoria '{{ categoriaSelecionada }}'.
-        </p>
+            <p id="descricao-brinquedo">{{ brinquedo.descricao }}</p>
+            <div class="preco-brinquedo">
+                <p id="dinheiro">R$ {{ brinquedo.preco.toFixed(2) }}</p>
+                <p id="pix">R$ {{ (brinquedo.preco * 0.9).toFixed(2) }} no PIX</p>
+            </div>
+            <button id="btn-comprar"><i class="fi fi-sr-shopping-cart"></i>Comprar</button>
+        </div>
     </div>
 
-    <!-- Tela de detalhes -->
+    <p v-if="buscouBrinquedos && brinquedos.length === 0 && categoriaSelecionada && !selectedBrinquedo" id="sem-brinquedos">
+        Ops! Por enquanto, nenhum brinquedo foi cadastrado para a categoria '{{ categoriaSelecionada }}'.
+    </p>
+
     <div v-if="selectedBrinquedo" class="select-brinquedo">
         <div class="conteiner-brinquedo-top">
             <img 

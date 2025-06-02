@@ -27,6 +27,11 @@
   max-width: 100%; 
   overflow: hidden; 
 }
+
+html[data-theme="light"] .wraper {
+  background-color: var(--bg-color);
+}
+
 .form-header {
   position: absolute;
   top: 0;
@@ -80,6 +85,14 @@
   white-space: nowrap;
 }
 
+html[data-theme="light"] .title-login, html[data-theme="light"] .title-cadastro, html[data-theme="light"] .title-recuperacao {
+  color: var(--bg-color);
+}
+
+html[data-theme="light"] .title-login {
+  color: var(--bg-color);
+}
+
 .login-form, .cadastro-form, .recuperacao-form {
   position: relative;
   width: 100%;
@@ -106,6 +119,11 @@
   transition: var(--transition);
 }
 
+html[data-theme="light"] .input-field {
+  background-color: var(--bg-color);
+  color: var(--text-color-light);
+}
+
 .label {
   position: absolute;
   top: 35%;
@@ -117,12 +135,24 @@
   cursor: text;
 }
 
+html[data-theme="light"] .label {
+  color: var(--text-color-light);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
 .input-box.filled .label,
 .input-field:focus ~ .label {
   top: -7px;
   font-size: 14px;
   background-color: var(--secondary-color);
   padding: 0 10px;
+}
+
+html[data-theme="light"] .input-box.filled .label,
+html[data-theme="light"] .input-field:focus ~ .label {
+  background-color: var(--bg-color);
+  color: var(--text-color-light);
 }
 
 #icon-login {
@@ -133,6 +163,10 @@
   font-size: 20px;
   color: var(--text-color);
   transition: var(--transition);
+}
+
+html[data-theme="light"] #icon-login {
+  color: var(--text-color-light);
 }
 
 .form-cols {
@@ -151,10 +185,19 @@
   text-decoration: underline;
 }
 
+html[data-theme="light"] .form-cols a {
+  font-weight: 600;
+  color: var(--text-color-light);
+}
+
 .col-1 {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+html[data-theme="light"] .col-1 label {
+  font-weight: 600;
 }
 
 #mostrar-senha, #mostrar-senha-cadastro {
@@ -189,7 +232,6 @@
   transform: rotate(45deg);
 }
 
-
 #msg-erro {
   display: flex;
   justify-content: center;
@@ -199,6 +241,10 @@
   margin-bottom: 20px;
 }
 
+html[data-theme="light"] #msg-erro {
+  font-weight: 600;
+}
+
 #msg-sucesso {
   display: flex;
   justify-content: center;
@@ -206,6 +252,10 @@
   color: var(--destaque-color);
   font-weight: 500;
   margin-bottom: 20px;
+}
+
+html[data-theme="light"] #msg-sucesso {
+  font-weight: 600;
 }
 
 .btn-submit {
@@ -240,7 +290,16 @@
   text-align: center;
 }
 
+html[data-theme="light"] .swith-form {
+  font-weight: 500;
+}
+
 .swith-form a {
+  font-weight: bolder;
+}
+
+html[data-theme="light"] .swith-form a {
+  color: var(--text-color-light);
   font-weight: bold;
 }
 

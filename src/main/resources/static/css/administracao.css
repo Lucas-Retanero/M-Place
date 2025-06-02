@@ -12,6 +12,10 @@
     border-radius: 1rem;
 }
 
+html[data-theme="light"] .tabela-brinquedos, html[data-theme="light"] .tabela-categorias {
+    border: 1px solid var(--text-color-light);
+}
+
 .tabela-brinquedos td img, .tabela-categorias td img {
     display: block;
     margin: 0 auto;
@@ -26,6 +30,11 @@
     text-align: center;
 }
 
+html[data-theme="light"] .tabela-brinquedos td,
+html[data-theme="light"] .tabela-categorias td {
+    border: 1px solid var(--tb-color);
+}
+
 .tabela-brinquedos th, .tabela-categorias th {
     background-color: var(--primary-color);
     color: var(--text-color);
@@ -34,9 +43,18 @@
     padding: 0.5rem 0.6rem;
 }
 
+html[data-theme="light"] .tabela-brinquedos th, html[data-theme="light"] .tabela-categorias th {
+    border: 1px solid var(--tb-color);
+}
+
 .tabela-brinquedos tr, .tabela-categorias tr {
     background-color: var(--secondary-color);
     color: var(--text-color);
+}
+
+html[data-theme="light"] .tabela-brinquedos tr, html[data-theme="light"] .tabela-categorias tr {
+    color: var(--text-color-light);
+    font-weight: 500;
 }
 
 #btn-editar-tabela {
@@ -48,6 +66,14 @@
     cursor: pointer;
     font-weight: 500;
     font-size: 0.8rem;
+}
+
+html[data-theme="light"] #btn-editar-tabela {
+    background-color: var(--destaque-color);
+}
+
+html[data-theme="light"] #btn-editar-tabela:hover {
+    background-color: var(--destaque-color-2);
 }
 
 #btn-editar-tabela:hover {
@@ -137,6 +163,10 @@
     margin-bottom: 1rem;
 }
 
+html[data-theme="light"] .modal-criar-brinquedo h2 {
+    color: var(--text-color-light);
+}
+
 .form-brinquedo {
     display: flex;
     flex-direction: column;
@@ -144,11 +174,21 @@
     color: var(--text-color);
 }
 
+html[data-theme="light"] .form-brinquedo {
+    color: var(--text-color-light);
+    font-weight: 500;
+}
+
 .form-brinquedo label {
     display: flex;
     flex-direction: column;
     font-weight: 500;
     gap: 0.25rem;
+}
+
+html[data-theme="light"] .form-brinquedo label  {
+    font-weight: 600;
+    color: var(--text-color-light);
 }
 
 .form-brinquedo input,
@@ -161,9 +201,18 @@
     color: var(--bg-color);
 }
 
+html[data-theme="light"] .form-brinquedo input,
+html[data-theme="light"] .form-brinquedo select {
+    color: var(--text-color-light);
+}
+
 .form-brinquedo input::placeholder {
     color: var(--bg-color-2);
     font-size: 0.9rem;
+}
+
+html[data-theme="light"] .form-brinquedo input::placeholder {
+    color: var(--tb-color);
 }
 
 .form-brinquedo button {
@@ -215,6 +264,10 @@
     background-color: var(--complementary-color);
 }
 
+html[data-theme="light"] #btn-cancelar:hover {
+    background-color: var(--tb-color);
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
@@ -249,4 +302,13 @@
 .abas-tabelas button.ativo {
   border-bottom: 3px solid var(--primary-color); 
   color: var(--primary-color);
+}
+
+html[data-theme="light"] .abas-tabelas button.ativo {
+  border-bottom: 3px solid var(--primary-color); 
+  color: var(--primary-color);
+}
+
+html[data-theme="light"] .abas-tabelas button {
+  color: var(--text-color-light);
 }
