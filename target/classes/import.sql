@@ -9,9 +9,19 @@ INSERT INTO categoria (nome, urlimagem) VALUES ('Overwatch 2', 'https://upload.w
 
 INSERT INTO categoria (nome, urlimagem) VALUES ('Among Us', 'https://img.utdstc.com/icon/015/d1c/015d1cecf14c3ef529e92d788304fe58aa571c4e3ebaf4d78d5eea44f693c844:200');
 
+INSERT INTO categoria (nome, urlimagem) VALUES ('Sea of Thieves', 'https://i.scdn.co/image/ab6761610000e5ebedda092170e6378c32a4a961');
+
+INSERT INTO categoria (nome, urlimagem) VALUES ('Cuphead', 'https://img-eshop.cdn.nintendo.net/i/139836b3193bb50dab4982ac706d5d5d148fb7cc34ff3c6c21c34cdefa4f5df7.jpg');
+
 INSERT INTO categoria (nome, urlimagem) VALUES ('R.E.P.O', 'https://cdn2.steamgriddb.com/icon/0504b3f1ca5994854e8718b2090ab098.ico');
 
-INSERT INTO categoria (nome, urlimagem) VALUES ('Sea of Thieves', 'https://i.scdn.co/image/ab6761610000e5ebedda092170e6378c32a4a961');
+INSERT INTO categoria (nome, urlimagem) VALUES ('Fnaf', 'https://i.redd.it/niatwi98l6t61.png');
+
+INSERT INTO categoria (nome, urlimagem) VALUES ('Poppy Playtime', 'https://play-lh.googleusercontent.com/LmZuGeTmqAA3BTvSHvS7HSFOUfpajbknRhELZmoCHllZ27QZlhyPjD9urOrZwZAFM-A');
+
+INSERT INTO categoria (nome, urlimagem) VALUES ('Sonic', 'https://cdn2.steamgriddb.com/icon/19b650660b253761af189682e03501dd.png');
+
+INSERT INTO categoria (nome, urlimagem) VALUES ('Super Mario', 'https://media.gamestop.com/i/gamestop/20011358_ALT01/Super-Mario-Mario-and-Luigi-Circle-2-Pack-Canvas?$pdp$');
 
 INSERT INTO categoria (nome, urlimagem) VALUES ('Outros', 'https://cdn-icons-png.flaticon.com/512/3082/3082048.png');
 
@@ -46,28 +56,26 @@ INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlim
 
 INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Pelúcia Spike Brawl Stars', 89.99, 'Outros', 'Boneco Spike 25 cm - Brawl Stars', 'Um brinquedo fofo e misterioso do jogo brawl stars', 'Supercell Toys', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5VmGC1ScLDbaRZ173i41CS7Pmo28wyuFMJ2ZqBseVo2ignj6J5JDsnWyxJ34706rEvDk&usqp=CAU');
 
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Golden Freddy Pelúcia', 79.99, 'Outros', 'Pelúcia Freddy 10 cm - FNAF', 'Se apertar o nariz, faz fonfon', 'Fazbear Entertainment', 'https://img.joomcdn.net/81c74d58279c54a9733c0d40511d2213318df6d2_1024_1024.jpeg');
+INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Golden Freddy Pelúcia', 79.99, 'Fnaf', 'Pelúcia Freddy 10 cm - FNAF', 'Se apertar o nariz, faz fonfon', 'Fazbear Entertainment', 'https://img.joomcdn.net/81c74d58279c54a9733c0d40511d2213318df6d2_1024_1024.jpeg');
 
 INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Pelúcia Huntress', 69.99, 'Outros', 'Pelúcia Huntress 10 cm - DBD', 'Especial de Halloween!', 'Behavior Toys', 'https://www.picclickimg.com/ojsAAOSw4nNnEI1N/Huntress-Plush-Dead-by-Daylight-DBD-SEGA-Rabbit.webp');
 
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Knight Hollow Knight', 109.90, 'Hollow Knight', 'Boneco do personagem Knight do jogo Hollow Knight', 'Figura estilizada do protagonista do aclamado jogo indie Hollow Knight, com acabamento detalhado e alta durabilidade.', 'Team Cherry', 'https://http2.mlstatic.com/D_NQ_NP_990544-CBT72346245094_102023-O.webp');
+INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Knight Hollow Knight', 109.90, 'Outros', 'Boneco do personagem Knight do jogo Hollow Knight', 'Figura estilizada do protagonista do aclamado jogo indie Hollow Knight, com acabamento detalhado e alta durabilidade.', 'Team Cherry', 'https://http2.mlstatic.com/D_NQ_NP_990544-CBT72346245094_102023-O.webp');
 
 INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Huggy Wuggy Poppy Playtime', 89.90, 'Poppy Playtime', 'Boneco do personagem Huggy Wuggy do jogo Poppy Playtime', 'Pelúcia detalhada de Huggy Wuggy, com aparência fiel ao personagem do jogo de terror Poppy Playtime.', 'Mob Entertainment', 'https://guejutoys.com.br/cdn/shop/products/Sf6df21c0763f4a5a8b16ae396e343b36d.jpg?v=1649726604');
 
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Alucard Castlevania', 129.90, 'Castlevania', 'Boneco do personagem Alucard da série Castlevania', 'Figura articulada de Alucard com acabamento premium, baseada no personagem da série Castlevania.', 'Konami', 'https://www.merchoid.com/media/mf_webp/jpg/media/catalog/product/cache/bfcb5e98c93238c53d4013e78676b669/l/a/lab340015_2.webp');
+INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Alucard Castlevania', 129.90, 'Outros', 'Boneco do personagem Alucard da série Castlevania', 'Figura articulada de Alucard com acabamento premium, baseada no personagem da série Castlevania.', 'Konami', 'https://www.merchoid.com/media/mf_webp/jpg/media/catalog/product/cache/bfcb5e98c93238c53d4013e78676b669/l/a/lab340015_2.webp');
 
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Cerberus Hades', 99.90, 'Hades', 'Pelúcia do personagem Cerberus do jogo Hades', 'Pelúcia do cão de três cabeças Cerberus, com design encantador e inspirado no jogo Hades da Supergiant Games.', 'Supergiant Games', 'https://www.fangamer.com/cdn/shop/products/product_hades_cerberus_plush_designview.png?v=1657225340');
+INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Chomper Plants vs Zombies', 94.90, 'Outros', 'Boneco da planta Chomper do jogo Plants vs Zombies', 'Boneco da planta carnívora Chomper com visual fiel ao jogo Plants vs Zombies. Ideal para fãs da franquia.', 'PopCap Games', 'https://gw.alicdn.com/imgextra/i3/3417880949/O1CN01VxH3nI1IsgPausYLy_!!3417880949.jpg');
 
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Chomper Plants vs Zombies', 94.90, 'Plants vs Zombies', 'Boneco da planta Chomper do jogo Plants vs Zombies', 'Boneco da planta carnívora Chomper com visual fiel ao jogo Plants vs Zombies. Ideal para fãs da franquia.', 'PopCap Games', 'https://gw.alicdn.com/imgextra/i3/3417880949/O1CN01VxH3nI1IsgPausYLy_!!3417880949.jpg');
+INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Peely Fortnite', 112.50, 'Outros', 'Boneco do personagem Peely do jogo Fortnite', 'Figura do personagem em forma de banana Peely, com articulações e visual vibrante fiel ao jogo Fortnite.', 'Epic Games', 'https://images.tcdn.com.br/img/img_prod/664029/mcfarlane_fortnite_solo_mode_core_peely_yellow_5161_1_104ad17a1733159c662f1a31352f5511_20220606150141.jpg');
 
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Napstablook Undertale', 84.90, 'Undertale', 'Pelúcia do personagem Napstablook do jogo Undertale', 'Pelúcia do fantasma melancólico Napstablook, macia e detalhada, inspirada no universo de Undertale.', 'Toby Fox', 'https://img4.dhresource.com/webp/m/0x0/f3/albu/km/o/07/d3cbd971-6b78-4a46-9aa6-36e7978212a6.jpg');
-
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Peely Fortnite', 112.50, 'Fortnite', 'Boneco do personagem Peely do jogo Fortnite', 'Figura do personagem em forma de banana Peely, com articulações e visual vibrante fiel ao jogo Fortnite.', 'Epic Games', 'https://images.tcdn.com.br/img/img_prod/664029/mcfarlane_fortnite_solo_mode_core_peely_yellow_5161_1_104ad17a1733159c662f1a31352f5511_20220606150141.jpg');
-
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Helena Identity V', 107.90, 'Identity V', 'Boneco da personagem Helena do jogo Identity V', 'Figura da personagem Helena Adams, com detalhes fiéis ao visual do jogo.', 'NetEase', 'https://img.fruugo.com/product/4/28/1598076284_0340_0340.jpg');
+INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Helena Identity V', 107.90, 'Outros', 'Boneco da personagem Helena do jogo Identity V', 'Figura da personagem Helena Adams, com detalhes fiéis ao visual do jogo.', 'NetEase', 'https://img.fruugo.com/product/4/28/1598076284_0340_0340.jpg');
 
 INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Cuphead Cuphead', 109.90, 'Cuphead', 'Boneco do personagem Cuphead do jogo Cuphead', 'Figura estilizada de Cuphead, com acabamento em vinil e visual baseado na estética retrô do jogo.', 'Studio MDHR', 'https://m.media-amazon.com/images/I/51yzNqKdAzL._AC_UF894,1000_QL80_.jpg');
 
-INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Sheldon o motoqueiro da série Sonic', 'Figura articulada de Shadow the Hedgehog com sua clássica moto, ideal para colecionadores da franquia Sonic.', 'SEGA', 'https://m.media-amazon.com/images/I/71-mD8yX1CL.jpg');
+INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Sheldon o motoqueiro da série Sonic', 4599.99, 'Sonic', 'Sheldon o motoqueiro da série Sonic','Figura articulada de Shadow the Hedgehog com sua clássica moto, ideal para colecionadores da franquia Sonic.', 'SEGA', 'https://m.media-amazon.com/images/I/71-mD8yX1CL.jpg');
 
 INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Yoshi Mario', 97.90, 'Super Mario', 'Boneco do personagem Yoshi da franquia Super Mario', 'Figura colecionável do Yoshi com acabamento colorido e expressão alegre, ideal para fãs de Mario.', 'Nintendo', 'https://supertoysandhobbies.com.au/cdn/shop/files/192995413993_1.jpg?v=1716196528');
+
+INSERT INTO brinquedo (nome, preco, categoria, descricao, detalhes, marca, urlimagem) VALUES ('Youtooz Megalodon', 727.86, 'Sea of Thieves', 'Youtooz Megalodon 3.2 inch Vinyl Figure', 'Youtooz Megalodon 3.2 inch Vinyl Figure, Collectible Megalodon Shark Figure by Youtooz Sea of Thieves Collection', 'Mar', 'https://m.media-amazon.com/images/I/611I3xb9HGL._AC_SX466_.jpg');

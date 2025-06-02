@@ -16,12 +16,48 @@
 
 .destaques {
     width: 100%;
-    height: 100%;
     display: grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     justify-items: center;
     padding-top: 0.5rem;
+}
+
+@media (max-width: 579px) {
+    #titulo {
+    font-size: 1.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+}
+
+/* Telas pequenas (até 575px) - 1 brinquedo por linha */
+@media (min-width: 580px) and (max-width: 900px) {
+    .destaques {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Telas médias (768px até 1060px) - 2 brinquedos por linha */
+@media (min-width: 901px) and (max-width: 1270px) {
+    .destaques {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Telas grandes (a partir de 1061px) - 3 brinquedos por linha */
+@media (min-width: 1271px) and (max-width: 1599px) {
+    .destaques {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Telas grandes (a partir de 1200px) - 4 brinquedos por linha */
+@media (min-width: 1600px) {
+    .destaques {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .card-brinquedo {

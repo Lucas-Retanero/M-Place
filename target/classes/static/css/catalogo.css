@@ -10,10 +10,44 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     justify-items: center;
     padding-top: 0.5rem;
+}
+
+@media (max-width: 794px) {
+    .categorias {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Telas pequenas (até 575px) - 1 brinquedo por linha */
+@media (min-width: 795px) and (max-width: 1079px) {
+    .categorias {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Telas médias (768px até 1060px) - 2 brinquedos por linha */
+@media (min-width: 1080px) and (max-width: 1359px) {
+    .categorias {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Telas grandes (a partir de 1061px) - 3 brinquedos por linha */
+@media (min-width: 1360px) and (max-width: 1599px) {
+    .categorias {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Telas grandes (a partir de 1200px) - 4 brinquedos por linha */
+@media (min-width: 1600px) {
+    .categorias {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 .categoria {
