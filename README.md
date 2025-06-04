@@ -22,7 +22,7 @@ Este projeto foi desenvolvido como parte da disciplina **Desenvolvimento Web III
 
 ## ⚙️ Funcionalidades
 
-#Funcionalidades Gerais (Todos os usuários - comum, admin e admin master):
+### Funcionalidades Gerais (Todos os usuários - comum, admin e admin master):
 
 ✅ Criar uma conta (cadastro)
 
@@ -38,7 +38,7 @@ Este projeto foi desenvolvido como parte da disciplina **Desenvolvimento Web III
 
 ✅ Visualizar todas as categorias
 
-#Funcionalidades de Administrador (admin):
+### Funcionalidades de Administrador (admin):
 
 ✅ Criar brinquedos e categorias
 
@@ -46,7 +46,7 @@ Este projeto foi desenvolvido como parte da disciplina **Desenvolvimento Web III
 
 ✅ Excluir brinquedos e categorias
 
-#Funcionalidades de Administrador Master (admin master):
+### Funcionalidades de Administrador Master (admin master):
 
 ✅ Todas as funcionalidades dos usuários comuns e admins
 
