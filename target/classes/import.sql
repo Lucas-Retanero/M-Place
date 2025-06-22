@@ -1,5 +1,6 @@
 -- Inserção de usuário
 INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Admin Master', 'adminMaster@gmail.com', 'admin123', 3);
+INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Lucas Retanero', 'lucas@gmail.com', 'senha123', 2);
 INSERT INTO usuário (nome, email, senha, permissao) VALUES ('Kevyn Cavalcanti', 'kevyn@gmail.com', 'senha123', 2);
 
 -- Inserção de categorias
