@@ -3,6 +3,7 @@ import { Catalogo } from './components/catalogo.js';
 import { Administracao } from './components/administracao.js';
 import { Usuarios } from './components/usuarios.js';
 import { Equipe } from './components/equipe.js';
+import { Conta } from './components/conta.js';
 import { Login } from './components/login.js';
 
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
     { path: '/admin', component: Administracao },
     { path: '/usuarios', component: Usuarios },
     { path: '/equipe', component: Equipe },
+    { path: '/conta', component: Conta },
 ];
 
 const router = VueRouter.createRouter({
@@ -52,7 +54,6 @@ const app = {
             showLogoutConfirm: false,
             logoutCallback: null,
             permissao: localStorage.getItem('permissao') || null,
-            // Inicializa isLightMode com base no localStorage ou preferência do sistema
             isLightMode: localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !window.matchMedia('(prefers-color-scheme: dark)').matches)
         };
     },
@@ -148,18 +149,18 @@ const app = {
                     </li>
                 </router-link>
 
+                <router-link to="/conta" custom v-slot="{ navigate, isActive }">
+                    <li @click="navigate" :class="{ active: isActive }"> 
+                        <i class="fi fi-sr-user"></i><p>Conta</p>
+                    </li>
+                </router-link>
+
                 <router-link to="/equipe" custom v-slot="{ navigate, isActive }">
                     <li @click="navigate" :class="{ active: isActive }">
                         <i class="fi fi-sr-users"></i><p>Equipe</p>
                     </li>
                 </router-link>
-
-                <router-link to="/" custom v-slot="{ navigate, isActive }">
-                    <li @click.prevent="handleLogout" :class="{ active: isActive }" id="logout">
-                        <i class="bx bx-log-out"></i><p>Sair</p>
-                    </li>
-                </router-link>
-            </ul>
+                </ul>
         </nav>
 
         <div v-if="showLogoutConfirm" class="popup-overlay">

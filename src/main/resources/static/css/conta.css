@@ -1,0 +1,361 @@
+/* CONTA SECTION STYLES */
+.conta {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    height: calc(100vh - 12.5rem);
+    padding: 2rem;
+}
+
+.header-section {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin-bottom: 2.5rem; /* Aumentado um pouco o espaçamento */
+}
+
+.title-conta {
+    font-size: 3rem; /* Título maior e mais impactante */
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em; /* Pequeno espaçamento entre as letras */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil no título */
+}
+
+html[data-theme="light"] .title-conta {
+    color: var(--primary-color); 
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.container-conta {
+    width: 100%;
+    max-width: 850px; /* Levemente mais largo para acomodar o card */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.card-conta {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--complementary-color);
+    border-radius: 1.25rem; /* Borda mais arredondada */
+    padding: 3rem; /* Mais padding interno */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* Aumenta o espaçamento entre seções */
+    color: var(--text-color);
+    position: relative; /* Para possíveis elementos posicionados */
+    overflow: hidden; /* Garante que o conteúdo não vaze */
+}
+
+html[data-theme="light"] .card-conta {
+    background-color: var(--secondary-color); 
+    border: 1px solid var(--complementary-color); 
+    color: var(--text-color-light);
+}
+
+/* Efeito de brilho no canto do card (opcional, mas adiciona estilo) */
+.card-conta::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, var(--destaque-color-2) 10%, transparent 70%);
+    opacity: 0.1;
+    border-radius: 50%;
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+}
+html[data-theme="light"] .card-conta::before {
+    background: radial-gradient(circle, var(--destaque-color) 10%, transparent 70%);
+    opacity: 0.08;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem; /* Aumenta o espaçamento */
+    padding-bottom: 2rem; /* Mais padding */
+    border-bottom: 2px solid var(--complementary-color-2); /* Borda mais grossa */
+    position: relative; /* Para z-index sobre o brilho */
+    z-index: 1;
+}
+
+html[data-theme="light"] .user-profile {
+    border-bottom: 2px solid var(--complementary-color-2);
+}
+
+.user-profile .icon {
+    font-size: 4rem; /* Ícone maior */
+    color: var(--primary-color); /* Usando cor de destaque para o ícone */
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-details-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; /* Alinha no centro para um visual mais limpo */
+}
+
+.user-details-header h2 {
+    font-size: 2.2rem; /* Nome maior */
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0; /* Remove margem padrão */
+}
+html[data-theme="light"] .user-details-header h2 {
+    color: var(--text-color-light);
+}
+
+.user-details-header .user-name {
+    margin-right: 0.8rem;
+}
+
+.user-details-header .user-permission {
+    font-size: 1.3rem; /* Permissão ligeiramente maior */
+    font-weight: 500;
+    color: var(--destaque-color); /* Permissão em cor de destaque */
+    background-color: var(--complementary-color); /* Pequeno background para a permissão */
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+}
+html[data-theme="light"] .user-details-header .user-permission {
+    color: var(--destaque-color);
+    background-color: var(--complementary-color);
+}
+
+.user-email {
+    font-size: 1.1rem; /* Email ligeiramente maior */
+    color: var(--complementary-color-2); /* Cor mais suave para o email */
+    width: 100%;
+    margin-top: 0.6rem;
+    font-style: italic; /* Email em itálico */
+}
+html[data-theme="light"] .user-email {
+    color: var(--complementary-color-2);
+}
+
+.content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem; /* Aumenta o espaçamento */
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.info-grupo {
+    flex: 1;
+    min-width: 290px; 
+    border-radius: 1rem;
+    padding: 2rem; /* Mais padding */
+    border: 1px solid var(--complementary-color-2); /* Borda sutil */
+}
+
+html[data-theme="light"] .info-grupo {
+    background-color: var(--complementary-color);
+    border: 1px solid var(--bg-color-2);
+}
+
+.info-grupo h3 {
+    font-size: 1.6rem; /* Título do grupo maior */
+    color: var(--primary-color);
+    margin-bottom: 1.2rem; /* Mais espaçamento */
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-color-hover); /* Borda mais grossa */
+    padding-bottom: 0.8rem;
+    letter-spacing: 0.03em;
+}
+
+html[data-theme="light"] .info-grupo h3 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color-hover);
+}
+
+.info-grupo p {
+    font-size: 1.1rem; /* Texto maior */
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+html[data-theme="light"] .info-grupo p {
+    color: var(--text-color-light);
+}
+
+.info-grupo p strong {
+    color: var(--destaque-color); /* Nomes dos campos em destaque */
+    font-weight: 700;
+    margin-right: 0.5rem;
+}
+html[data-theme="light"] .info-grupo p strong {
+    color: var(--destaque-color);
+}
+
+
+#sair {
+    width: auto;
+    padding: 1rem 2rem; /* Botão maior */
+    background-color: var(--comfirm-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem; 
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    align-self: flex-end;
+}
+
+#sair:hover {
+    background-color: var(--comfirm-color-hover);
+}
+
+#sair i {
+    font-size: 1.4rem;
+    vertical-align: middle;
+}
+
+#sair span {
+    padding-top: 2px;
+    vertical-align: middle;
+}
+
+.loading-message {
+    text-align: center;
+    font-size: 1.4rem; /* Mensagem de carregamento maior */
+    color: var(--primary-color); /* Usa a cor primária para a mensagem */
+    padding: 2rem;
+    font-weight: 500;
+}
+html[data-theme="light"] .loading-message {
+    color: var(--primary-color);
+}
+
+/* --- Media Queries para Responsividade Aprimorada --- */
+@media (max-width: 768px) {
+    .conta {
+        padding: 1.5rem 1rem;
+        justify-content: flex-start; /* Permite que o conteúdo comece mais acima em telas pequenas */
+        min-height: auto; /* Remove altura mínima fixa para evitar rolagem desnecessária */
+    }
+
+    .title-conta {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .card-conta {
+        padding: 2rem 1.5rem; /* Padding ajustado para telas menores */
+        gap: 2rem;
+    }
+
+    .user-profile {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: 1rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .user-profile .icon {
+        font-size: 3rem;
+        padding: 0.6rem;
+    }
+
+    .user-details-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+
+    .user-details-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .user-details-header .user-permission {
+        font-size: 1.1rem;
+        padding: 0.1rem 0.5rem;
+    }
+
+    .user-email {
+        font-size: 1rem;
+        margin-top: 0.4rem;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .info-grupo {
+        min-width: unset;
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .info-grupo h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+    }
+
+    .info-grupo p {
+        font-size: 1rem;
+    }
+
+    #sair {
+        width: 100%;
+        align-self: center;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        margin-top: 2.5rem;
+    }
+}
+
+/* Ajustes para telas muito pequenas (celulares) */
+@media (max-width: 480px) {
+    .conta {
+        padding: 1rem 0.8rem;
+    }
+    .title-conta {
+        font-size: 1.8rem;
+    }
+    .card-conta {
+        padding: 1.5rem 1rem;
+    }
+    .user-profile .icon {
+        font-size: 2.5rem;
+        padding: 0.5rem;
+    }
+    .user-details-header h2 {
+        font-size: 1.6rem;
+    }
+    .user-details-header .user-permission {
+        font-size: 0.9rem;
+    }
+    .user-email {
+        font-size: 0.9rem;
+    }
+    .info-grupo h3 {
+        font-size: 1.1rem;
+    }
+    .info-grupo p {
+        font-size: 0.9rem;
+    }
+    #sair {
+        font-size: 0.95rem;
+        padding: 0.7rem 1.2rem;
+    }
+}

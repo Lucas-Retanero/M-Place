@@ -7,6 +7,28 @@ export const Home = {
             carregando: true
         };
     },
+    computed: {
+        brinquedosFiltradosPorCategoria() {
+            const brinquedosAgrupados = {};
+            this.brinquedos.forEach(brinquedo => {
+                if (!brinquedosAgrupados[brinquedo.categoria]) {
+                    brinquedosAgrupados[brinquedo.categoria] = [];
+                }
+                brinquedosAgrupados[brinquedo.categoria].push(brinquedo);
+            });
+
+            let brinquedosLimitados = [];
+            for (const categoria in brinquedosAgrupados) {
+                brinquedosLimitados = brinquedosLimitados.concat(brinquedosAgrupados[categoria].slice(0, 3));
+            }
+
+            for (let i = brinquedosLimitados.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [brinquedosLimitados[i], brinquedosLimitados[j]] = [brinquedosLimitados[j], brinquedosLimitados[i]];
+            }
+            return brinquedosLimitados;
+        }
+    },
     methods: {
         carregarBrinquedos() {
             this.carregando = true;
@@ -50,14 +72,11 @@ export const Home = {
                 Brinquedos em Destaque 
                 <span v-if="selectedBrinquedo"> - {{ selectedBrinquedo.nome }}</span>
             </h1>
-
             <div id="btn-voltar" v-if="selectedBrinquedo">
                 <button @click="voltarParaLista">
                     <i class="fi fi-rr-arrow-small-left"></i> Voltar
                 </button>
             </div>
-
-            <!-- Tela de detalhes -->
             <div v-if="selectedBrinquedo" class="select-brinquedo">
                 <div class="conteiner-brinquedo-top">
                     <img 
@@ -82,7 +101,6 @@ export const Home = {
                         </button>
                     </div>
                 </div>
-
                 <div class="conteiner-brinquedo-bottom">
                     <div class="info-card">
                         <h4>Nome:</h4>
@@ -102,11 +120,11 @@ export const Home = {
                     </div>
                 </div>
             </div>
-
-            <!-- Lista de brinquedos -->
             <div v-else class="destaques">
+                <p v-if="carregando">Carregando brinquedos...</p>
                 <div 
-                    v-for="brinquedo in brinquedos" 
+                    v-else-if="brinquedosFiltradosPorCategoria.length > 0"
+                    v-for="brinquedo in brinquedosFiltradosPorCategoria" 
                     :key="brinquedo.id" 
                     class="card-brinquedo" 
                     @click="verDetalhes(brinquedo)"
@@ -131,14 +149,13 @@ export const Home = {
                         <i class="fi fi-sr-shopping-cart"></i> Comprar
                     </button>
                 </div>
+                <p 
+                    v-else 
+                    id="sem-brinquedos"
+                >
+                    Ops! Por enquanto, nenhum brinquedo foi cadastrado no sistema.
+                </p>
             </div>
-
-            <p 
-                v-if="!selectedBrinquedo && !carregando && brinquedos.length === 0" 
-                id="sem-brinquedos"
-            >
-                Ops! Por enquanto, nenhum brinquedo foi cadastrado no sistema.
-            </p>
         </section>
     `
 };

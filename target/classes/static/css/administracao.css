@@ -1,19 +1,15 @@
 .administracao {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2.5rem;
+    padding-bottom: 1.7rem;
 }
 
 .tabela-brinquedos, .tabela-categorias {
     width: 100%;
-    text-align: center;
     border-collapse: collapse;
-    border: 1px solid var(--complementary-color);
-    border-radius: 1rem;
-}
-
-html[data-theme="light"] .tabela-brinquedos, html[data-theme="light"] .tabela-categorias {
-    border: 1px solid var(--text-color-light);
+    text-align: center;
+    overflow: hidden; 
 }
 
 .tabela-brinquedos td img, .tabela-categorias td img {
