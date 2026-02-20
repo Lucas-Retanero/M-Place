@@ -455,7 +455,6 @@ html[data-theme="dark"] .sun-and-moon > .moon > circle {
     main {
         padding: 1.5rem;
         height: calc(100vh - 10rem);
-        margin-bottom: 5rem;
     }
 
     .popup-content {
