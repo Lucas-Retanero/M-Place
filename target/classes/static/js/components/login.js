@@ -23,114 +23,138 @@ export const Login = {
       mostrarSenhaRecuperacao: false
     };
   },
+
   methods: {
-    fazerLogin() {
-      fetch(`${API_URL}/usuario/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(this.login)
-      })
-        .then(response => {
-          if (!response.ok) throw new Error("Usuário ou senha inválidos. Tente novamente.");
-          return response.json();
-        })
-		.then(data => {
-		  this.erroLogin = '';
-		  localStorage.setItem("usuarioId", data.usuario.idUsuario);
-		  localStorage.setItem("usuarioNome", data.usuario.nome);
-		  localStorage.setItem("permissao", data.usuario.tipo);
 
-		  const valor = localStorage.getItem("permissao");
-		  if (valor !== null) {
-			console.log("Permissao salvo:", valor);
-			console.log("Resposta da API:", data);
-		  } else {
-		    console.log('ID não encontrado no localStorage.');
-		  }
-
-		  this.$router.push('/home');
-		})
-        .catch(error => {
-          this.erroLogin = error.message;
+    async fazerLogin() {
+      try {
+        const response = await fetch(`${API_URL}/usuario/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.login)
         });
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(text || "Usuário ou senha inválidos.");
+        }
+
+        const data = await response.json();
+
+        this.erroLogin = '';
+
+        localStorage.setItem("usuarioId", data.usuario.idUsuario);
+        localStorage.setItem("usuarioNome", data.usuario.nome);
+        localStorage.setItem("permissao", data.usuario.tipo);
+
+        this.$router.push('/home');
+
+      } catch (error) {
+        this.erroLogin = error.message;
+
+        localStorage.removeItem("usuarioId");
+        localStorage.removeItem("usuarioNome");
+        localStorage.removeItem("permissao");
+      }
     },
-    criarUsuario() {
+
+
+    async criarUsuario() {
+
       if (this.cadastro.senha !== this.cadastro.confirmarSenha) {
         this.erroCadastro = "As senhas devem ser iguais.";
         return;
       }
 
-      fetch(`${API_URL}/usuario`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome: this.cadastro.nome,
-          email: this.cadastro.email,
-          senha: this.cadastro.senha,
-          permissao: this.cadastro.permissao
-        })
-      })
-        .then(response => {
-          if (!response.ok) throw new Error("Erro ao criar usuário");
-          return response.json();
-        })
-        .then(data => {
-          this.sucessoCriacao = "Usuário criado com sucesso!";
-          this.erroCadastro = '';
-          this.cadastro = {
-            nome: '',
-            email: '',
-            senha: '',
-            confirmarSenha: '',
-            permissao: 1
-          };
-          this.mostrarSenhaCadastro = false;
-          setTimeout(() => {
-            this.modoCadastro = false;
-            this.sucessoCriacao = '';
-          }, 3000);
-        })
-        .catch(error => {
-          this.sucessoCriacao = '';
-          this.erroCadastro = "Erro: " + error.message;
+      try {
+        const response = await fetch(`${API_URL}/usuario`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nome: this.cadastro.nome,
+            email: this.cadastro.email,
+            senha: this.cadastro.senha,
+            permissao: this.cadastro.permissao
+          })
         });
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(text || "Erro ao criar usuário.");
+        }
+
+        await response.json();
+
+        this.sucessoCriacao = "Usuário criado com sucesso!";
+        this.erroCadastro = '';
+
+        this.cadastro = {
+          nome: '',
+          email: '',
+          senha: '',
+          confirmarSenha: '',
+          permissao: 1
+        };
+
+        this.mostrarSenhaCadastro = false;
+
+        setTimeout(() => {
+          this.modoCadastro = false;
+          this.sucessoCriacao = '';
+        }, 3000);
+
+      } catch (error) {
+        this.sucessoCriacao = '';
+        this.erroCadastro = error.message;
+      }
     },
-    recuperarSenha() {
+
+
+    async recuperarSenha() {
+
       if (this.cadastro.senha !== this.cadastro.confirmarSenha) {
         this.erroRecuperacao = "As senhas devem ser iguais.";
         this.sucessoRecuperacao = '';
         return;
       }
 
-      fetch(`${API_URL}/usuario/recuperar-senha`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: this.login.email,
-          novaSenha: this.cadastro.senha
-        })
-      })
-        .then(response => {
-          if (!response.ok) throw new Error("Erro ao redefinir a senha.");
-          return response.json();
-        })
-        .then(data => {
-          this.sucessoRecuperacao = "Senha redefinida com sucesso.";
-          this.erroRecuperacao = '';
-          this.login.email = '';
-          this.cadastro.senha = '';
-          this.cadastro.confirmarSenha = '';
-          this.mostrarSenhaCadastro = false;
-          setTimeout(() => {
-            this.modoRecuperacao = false;
-            this.sucessoRecuperacao = '';
-          }, 3000);
-        })
-        .catch(error => {
-          this.erroRecuperacao = error.message;
-          this.sucessoRecuperacao = '';
+      try {
+        const response = await fetch(`${API_URL}/usuario/recuperar-senha`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: this.login.email,
+            novaSenha: this.cadastro.senha
+          })
         });
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(text || "Erro ao redefinir senha.");
+        }
+
+        await response.json();
+
+        this.sucessoRecuperacao = "Senha redefinida com sucesso.";
+        this.erroRecuperacao = '';
+
+        this.login.email = '';
+        this.cadastro.senha = '';
+        this.cadastro.confirmarSenha = '';
+
+        this.mostrarSenhaCadastro = false;
+
+        setTimeout(() => {
+          this.modoRecuperacao = false;
+          this.sucessoRecuperacao = '';
+        }, 3000);
+
+      } catch (error) {
+        this.erroRecuperacao = error.message;
+        this.sucessoRecuperacao = '';
+      }
     },
+
     trocarFormulario(modo) {
       this.modoCadastro = modo === 'cadastro';
       this.modoRecuperacao = modo === 'recuperacao';
@@ -142,17 +166,21 @@ export const Login = {
       this.sucessoRecuperacao = '';
 
       this.login = { email: '', senha: '' };
+
       this.cadastro = {
         nome: '',
         email: '',
         senha: '',
+        confirmarSenha: '',
         permissao: 1
       };
+
       this.mostrarSenhaLogin = false;
       this.mostrarSenhaCadastro = false;
       this.mostrarSenhaRecuperacao = false;
     }
   },
+
   template: `
     <section class="login">
       <div class="wraper">
