@@ -20,13 +20,14 @@ export const Login = {
       modoRecuperacao: false,
       mostrarSenhaLogin: false,
       mostrarSenhaCadastro: false,
-      mostrarSenhaRecuperacao: false
+      mostrarSenhaRecuperacao: false,
+      carregando: false
     };
   },
 
   methods: {
-
     async fazerLogin() {
+      this.carregando = true;
       try {
         const response = await fetch(`${API_URL}/usuario/login`, {
           method: "POST",
@@ -40,7 +41,6 @@ export const Login = {
         }
 
         const data = await response.json();
-
         this.erroLogin = '';
 
         localStorage.setItem("usuarioId", data.usuario.idUsuario);
@@ -51,21 +51,21 @@ export const Login = {
 
       } catch (error) {
         this.erroLogin = error.message;
-
         localStorage.removeItem("usuarioId");
         localStorage.removeItem("usuarioNome");
         localStorage.removeItem("permissao");
+      } finally {
+        this.carregando = false;
       }
     },
 
-
     async criarUsuario() {
-
       if (this.cadastro.senha !== this.cadastro.confirmarSenha) {
         this.erroCadastro = "As senhas devem ser iguais.";
         return;
       }
 
+      this.carregando = true;
       try {
         const response = await fetch(`${API_URL}/usuario`, {
           method: "POST",
@@ -84,18 +84,10 @@ export const Login = {
         }
 
         await response.json();
-
         this.sucessoCriacao = "Usuário criado com sucesso!";
         this.erroCadastro = '';
 
-        this.cadastro = {
-          nome: '',
-          email: '',
-          senha: '',
-          confirmarSenha: '',
-          permissao: 1
-        };
-
+        this.cadastro = { nome: '', email: '', senha: '', confirmarSenha: '', permissao: 1 };
         this.mostrarSenhaCadastro = false;
 
         setTimeout(() => {
@@ -106,18 +98,19 @@ export const Login = {
       } catch (error) {
         this.sucessoCriacao = '';
         this.erroCadastro = error.message;
+      } finally {
+        this.carregando = false;
       }
     },
 
-
     async recuperarSenha() {
-
       if (this.cadastro.senha !== this.cadastro.confirmarSenha) {
         this.erroRecuperacao = "As senhas devem ser iguais.";
         this.sucessoRecuperacao = '';
         return;
       }
 
+      this.carregando = true;
       try {
         const response = await fetch(`${API_URL}/usuario/recuperar-senha`, {
           method: "POST",
@@ -134,14 +127,12 @@ export const Login = {
         }
 
         await response.json();
-
         this.sucessoRecuperacao = "Senha redefinida com sucesso.";
         this.erroRecuperacao = '';
 
         this.login.email = '';
         this.cadastro.senha = '';
         this.cadastro.confirmarSenha = '';
-
         this.mostrarSenhaCadastro = false;
 
         setTimeout(() => {
@@ -152,29 +143,21 @@ export const Login = {
       } catch (error) {
         this.erroRecuperacao = error.message;
         this.sucessoRecuperacao = '';
+      } finally {
+        this.carregando = false;
       }
     },
 
     trocarFormulario(modo) {
       this.modoCadastro = modo === 'cadastro';
       this.modoRecuperacao = modo === 'recuperacao';
-
       this.erroCadastro = '';
       this.erroLogin = '';
       this.erroRecuperacao = '';
       this.sucessoCriacao = '';
       this.sucessoRecuperacao = '';
-
       this.login = { email: '', senha: '' };
-
-      this.cadastro = {
-        nome: '',
-        email: '',
-        senha: '',
-        confirmarSenha: '',
-        permissao: 1
-      };
-
+      this.cadastro = { nome: '', email: '', senha: '', confirmarSenha: '', permissao: 1 };
       this.mostrarSenhaLogin = false;
       this.mostrarSenhaCadastro = false;
       this.mostrarSenhaRecuperacao = false;
@@ -192,7 +175,6 @@ export const Login = {
           </div>
         </div>
 
-        <!-- Formulário de Login -->
         <form v-if="!modoCadastro && !modoRecuperacao" class="form-container login-form" @submit.prevent="fazerLogin">
           <div class="input-box" :class="{ filled: login.email }">
             <input type="email" class="input-field" v-model="login.email" required>
@@ -212,7 +194,10 @@ export const Login = {
             <div class="col-2"><a href="#" @click.prevent="trocarFormulario('recuperacao')">Esqueceu a senha?</a></div>
           </div>
           <div class="input-box">
-            <button type="submit" class="btn-submit">Entrar <i class='bx bx-log-in'></i></button>
+            <button type="submit" class="btn-submit" :disabled="carregando">
+              <span v-if="carregando" class="loader"></span>
+              <template v-else>Entrar <i class='bx bx-log-in'></i></template>
+            </button>
           </div>
           <p id="msg-erro" v-if="erroLogin">{{ erroLogin }}</p>
           <div class="swith-form">
@@ -220,7 +205,6 @@ export const Login = {
           </div>
         </form>
 
-        <!-- Formulário de Cadastro -->
         <form v-else-if="modoCadastro" class="form-container cadastro-form" @submit.prevent="criarUsuario">
           <div class="input-box" :class="{ filled: cadastro.nome }">
             <input type="text" class="input-field" v-model="cadastro.nome" required>
@@ -239,7 +223,7 @@ export const Login = {
           </div>
           <div class="input-box" :class="{ filled: cadastro.confirmarSenha }">
             <input :type="mostrarSenhaCadastro ? 'text' : 'password'" class="input-field" v-model="cadastro.confirmarSenha" required>
-            <label class="label" id="label-confirmar-senha">Confirmar Senha</label>
+            <label class="label">Confirmar Senha</label>
             <i class="fi fi-rr-lock" id="icon-login"></i>
           </div>
           <div class="form-cols">
@@ -249,7 +233,10 @@ export const Login = {
             </div>
           </div>
           <div class="input-box">
-            <button type="submit" class="btn-submit">Cadastrar <i class='bx bx-log-out'></i></button>
+            <button type="submit" class="btn-submit" :disabled="carregando">
+              <span v-if="carregando" class="loader"></span>
+              <template v-else>Cadastrar <i class='bx bx-log-out'></i></template>
+            </button>
           </div>
           <p id="msg-erro" v-if="erroCadastro">{{ erroCadastro }}</p>
           <p id="msg-sucesso" v-if="sucessoCriacao">{{ sucessoCriacao }}</p>
@@ -258,8 +245,6 @@ export const Login = {
           </div>
         </form>
 
-        <!-- Formulário de Recuperação de Senha -->
-        
         <form v-else-if="modoRecuperacao" class="form-container recuperacao-form" @submit.prevent="recuperarSenha">
           <div class="input-box" :class="{ filled: login.email }">
             <input type="email" class="input-field" v-model="login.email" required>
@@ -268,22 +253,25 @@ export const Login = {
           </div>
           <div class="input-box" :class="{ filled: cadastro.senha }">
             <input :type="mostrarSenhaCadastro ? 'text' : 'password'" class="input-field" v-model="cadastro.senha" required>
-            <label id="label-nova-senha" class="label">Nova Senha</label>
+            <label class="label">Nova Senha</label>
             <i class="fi fi-rr-lock" id="icon-login"></i>
           </div>
           <div class="input-box" :class="{ filled: cadastro.confirmarSenha }">
             <input :type="mostrarSenhaCadastro ? 'text' : 'password'" class="input-field" v-model="cadastro.confirmarSenha" required>
-            <label class="label" id="label-confirmar-nova-senha">Confirmar Nova Senha</label>
+            <label class="label">Confirmar Nova Senha</label>
             <i class="fi fi-rr-lock" id="icon-login"></i>
           </div>
           <div class="form-cols">
             <div class="col-1">
-              <input type="checkbox" id="mostrar-senha-cadastro" v-model="mostrarSenhaCadastro">
+              <input type="checkbox" id="mostrar-senha-recuperacao" v-model="mostrarSenhaCadastro">
               <label for="mostrar-senha-recuperacao">{{ mostrarSenhaCadastro ? 'Ocultar Senhas' : 'Mostrar Senhas' }}</label>
             </div>
           </div>
           <div class="input-box">
-            <button type="submit" class="btn-submit">Redefinir Senha <i class='bx bx-reset'></i></button>
+            <button type="submit" class="btn-submit" :disabled="carregando">
+              <span v-if="carregando" class="loader"></span>
+              <template v-else>Redefinir Senha <i class='bx bx-reset'></i></template>
+            </button>
           </div>
           <p id="msg-erro" v-if="erroRecuperacao">{{ erroRecuperacao }}</p>
           <p id="msg-sucesso" v-if="sucessoRecuperacao">{{ sucessoRecuperacao }}</p>
