@@ -1,0 +1,16 @@
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\model\Brinquedo.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\controller\BrinquedoSseController.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\SecurityConfig.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\GlobalExceptionHandler.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\MPlayceApplication.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\model\Categoria.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\controller\CategoriaController.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\controller\BrinquedoController.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\controller\CategoriaSseController.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\model\Usuário.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\NotFoundException.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\repository\BrinquedoRepository.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\controller\UsuarioSseController.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\repository\UsuarioRepository.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\controller\UsuarioController.java
+C:\Users\gluca\IdeaProjects\M-Place\src\main\java\br\edu\fatecitaquera\mplayce\repository\CategoriaRepository.java

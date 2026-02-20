@@ -1,0 +1,16 @@
+br\edu\fatecitaquera\mplayce\SecurityConfig.class
+br\edu\fatecitaquera\mplayce\controller\CategoriaSseController.class
+br\edu\fatecitaquera\mplayce\controller\BrinquedoSseController.class
+br\edu\fatecitaquera\mplayce\model\Usuário.class
+br\edu\fatecitaquera\mplayce\controller\UsuarioSseController.class
+br\edu\fatecitaquera\mplayce\MPlayceApplication.class
+br\edu\fatecitaquera\mplayce\controller\BrinquedoController.class
+br\edu\fatecitaquera\mplayce\NotFoundException.class
+br\edu\fatecitaquera\mplayce\model\Categoria.class
+br\edu\fatecitaquera\mplayce\repository\CategoriaRepository.class
+br\edu\fatecitaquera\mplayce\controller\UsuarioController.class
+br\edu\fatecitaquera\mplayce\repository\UsuarioRepository.class
+br\edu\fatecitaquera\mplayce\repository\BrinquedoRepository.class
+br\edu\fatecitaquera\mplayce\GlobalExceptionHandler.class
+br\edu\fatecitaquera\mplayce\controller\CategoriaController.class
+br\edu\fatecitaquera\mplayce\model\Brinquedo.class
