@@ -1,3 +1,5 @@
+import { API_URL } from "../config.js";
+
 export const Usuarios = {
     data() {
         return {
@@ -16,7 +18,7 @@ export const Usuarios = {
     methods: {
         carregarUsuarios() {
             this.carregandoUsuarios = true;
-            fetch("https://m-place.onrender.com/usuario")
+            fetch(`${API_URL}/usuario`)
                 .then(res => res.json())
                 .then(data => {
                     this.usuarios = data;
@@ -38,7 +40,7 @@ export const Usuarios = {
 
     const id = this.usuarioEditando.id;
 
-    fetch(`https://m-place.onrender.com/usuario/${id}`, {
+    fetch(`${API_URL}/usuario/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(usuarioAtualizado)
@@ -66,11 +68,10 @@ export const Usuarios = {
             this.showDeleteConfirm = true;
         },
         excluirUsuario() {
-            fetch(`https://m-place.onrender.com/usuario/${this.usuarioParaExcluir.id}`, {
+            fetch(`${API_URL}/usuario/${this.usuarioParaExcluir.id}`, {
                 method: 'DELETE'
             })
             .then(() => {
-                // Remove o usuário da lista localmente
                 this.usuarios = this.usuarios.filter(u => u.id !== this.usuarioParaExcluir.id);
                 this.exibirMensagemSucesso("Usuário excluído com sucesso!");
             })
@@ -98,7 +99,7 @@ export const Usuarios = {
             return "Desconhecido";
         },
         iniciarSSE() {
-            this.eventSource = new EventSource("https://m-place.onrender.com/sse/usuario");
+            this.eventSource = new EventSource(`${API_URL}/sse/usuario`);
 
             this.eventSource.addEventListener("atualizacao", (event) => {
                 console.log("Evento SSE recebido:", event.data);
