@@ -11,8 +11,8 @@
   align-content: center;
   justify-content: center;
   gap: 1.5rem;
-  height: 100%;
-  padding-bottom: 2.5rem;
+  min-height: 100vh;
+  padding: 2rem 1rem;
 }
 
 .wraper {
@@ -24,8 +24,9 @@
   border: solid 1px var(--primary-color);
   box-shadow: 0 8px 15px var(--primary-color);
   height: auto;
-  max-width: 90%;
+  max-width: 100%;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 html[data-theme="light"] .wraper {
