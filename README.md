@@ -11,7 +11,7 @@ O projeto está disponível para visualização em tempo real através do link a
 🚀 **[MPlayce - Catálogo de Brinquedos](https://m-place.onrender.com)**
 
 > [!IMPORTANT]  
-> **Aviso sobre o carregamento:** O projeto está hospedado na plataforma **Render** utilizando o plano gratuito. Por esse motivo, o serviço entra em estado de hibernação quando não está em uso. Ao abrir o link, **pode levar entre 30 a 50 segundos** para o servidor "acordar" e o site carregar completamente.
+> **Aviso sobre o carregamento:** O projeto está hospedado na plataforma **Render** utilizando o plano gratuito. Por esse motivo, o serviço entra em estado de hibernação quando não está em uso. Ao abrir o link, **pode levar entre 1 a 3 minutos** para o servidor "acordar" e o site carregar completamente.
 
 ---
 
