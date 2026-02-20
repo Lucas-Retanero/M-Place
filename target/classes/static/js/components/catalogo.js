@@ -1,3 +1,5 @@
+import { API_URL } from "./config.js";
+
 export const Catalogo = {
     data() {
         return {
@@ -15,7 +17,7 @@ export const Catalogo = {
         async carregarCategorias() {
             this.carregandoCategorias = true;
             try {
-                const response = await fetch("http://localhost:8080/categoria");
+                const response = await fetch(`${API_URL}/categoria`);
                 this.categorias = await response.json();
             } catch (error) {
                 console.error("Erro ao carregar categorias:", error);
@@ -26,7 +28,7 @@ export const Catalogo = {
 
         async carregarBrinquedosPorCategoria(nomeCategoria) {
             try {
-                const response = await fetch(`http://localhost:8080/brinquedo/categoria/${encodeURIComponent(nomeCategoria)}`);
+                const response = await fetch(`${API_URL}/brinquedo/categoria/${encodeURIComponent(nomeCategoria)}`);
                 if (!response.ok) throw new Error("Erro ao buscar brinquedos");
                 this.brinquedos = await response.json();
             } catch (error) {
@@ -38,13 +40,13 @@ export const Catalogo = {
         },
 
         iniciarAtualizacaoAutomatica() {
-            this.sourceCategorias = new EventSource("http://localhost:8080/sse/categoria");
+            this.sourceCategorias = new EventSource(`${API_URL}/sse/categoria`);
             this.sourceCategorias.addEventListener("atualizacao", () => {
                 this.carregarCategorias();
                 this.$forceUpdate();
             });
 
-            this.sourceBrinquedos = new EventSource("http://localhost:8080/sse/brinquedo");
+            this.sourceBrinquedos = new EventSource(`${API_URL}/sse/brinquedo`);
             this.sourceBrinquedos.addEventListener("atualizacao", () => {
                 if (this.categoriaSelecionada) {
                     this.carregarBrinquedosPorCategoria(this.categoriaSelecionada);

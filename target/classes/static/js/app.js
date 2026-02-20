@@ -92,20 +92,18 @@ const app = {
         toggleTheme() {
             this.isLightMode = !this.isLightMode;
             localStorage.setItem('theme', this.isLightMode ? 'light' : 'dark');
-            this.aplicarTema(); // Aplica o tema imediatamente
+            this.aplicarTema();
         },
         aplicarTema() {
-            // Usa 'data-theme' no <html> para o CSS
             document.documentElement.setAttribute('data-theme', this.isLightMode ? 'light' : 'dark');
         }
     },
     mounted() {
         window.addEventListener('storage', this.atualizarPermissao);
-        this.aplicarTema(); // Aplica o tema na montagem
+        this.aplicarTema();
 
-        // Observa mudanças no sistema de preferência de cores
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({matches: isDark}) => {
-            if (!localStorage.getItem('theme')) { // Apenas se o usuário não tiver definido uma preferência
+            if (!localStorage.getItem('theme')) {
                 this.isLightMode = !isDark;
                 this.aplicarTema();
             }

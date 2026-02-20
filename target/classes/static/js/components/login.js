@@ -1,3 +1,5 @@
+import { API_URL } from "./config.js";
+
 export const Login = {
   data() {
     return {
@@ -23,7 +25,7 @@ export const Login = {
   },
   methods: {
     fazerLogin() {
-      fetch("http://localhost:8080/usuario/login", {
+      fetch(`${API_URL}/usuario/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(this.login)
@@ -58,7 +60,7 @@ export const Login = {
         return;
       }
 
-      fetch("http://localhost:8080/usuario", {
+      fetch(`${API_URL}/usuario`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -100,7 +102,7 @@ export const Login = {
         return;
       }
 
-      fetch("http://localhost:8080/usuario/recuperar-senha", {
+      fetch(`${API_URL}/usuario/recuperar-senha`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

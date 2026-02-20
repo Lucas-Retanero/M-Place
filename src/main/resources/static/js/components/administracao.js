@@ -1,3 +1,5 @@
+import { API_URL } from "./config.js";
+
 export const Administracao = {
     data() {
         return {
@@ -40,7 +42,7 @@ export const Administracao = {
         // Brinquedos
         carregarBrinquedos() {
             this.carregando = true;
-            fetch("http://localhost:8080/brinquedo")
+            fetch(`${API_URL}/brinquedo`)
                 .then(res => res.json())
                 .then(data => {
                     this.brinquedos = data;
@@ -53,7 +55,7 @@ export const Administracao = {
                 });
         },
         salvarNovoBrinquedo() {
-            fetch("http://localhost:8080/brinquedo", {
+            fetch(`${API_URL}/brinquedo`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(this.novoBrinquedo)
@@ -74,7 +76,7 @@ export const Administracao = {
             }
         },
         salvarEdicao() {
-            fetch(`http://localhost:8080/brinquedo/${this.brinquedoEditando.id}`, {
+            fetch(`${API_URL}/brinquedo/${this.brinquedoEditando.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(this.brinquedoEditando)
@@ -111,7 +113,7 @@ export const Administracao = {
 
         carregarCategorias() {
     this.carregandoCategorias = true;
-    fetch("http://localhost:8080/categoria")
+    fetch(`${API_URL}/categoria`)
         .then(res => res.json())
         .then(data => {
             this.categorias = data;
@@ -124,7 +126,7 @@ export const Administracao = {
         });
         },
         salvarNovaCategoria() {
-            fetch("http://localhost:8080/categoria", {
+            fetch(`${API_URL}/categoria`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(this.novaCategoria)
@@ -145,7 +147,7 @@ export const Administracao = {
             }
         },
         salvarEdicaoCategoria() {
-            fetch(`http://localhost:8080/categoria/${this.categoriaEditando.id}`, {
+            fetch(`${API_URL}/categoria/${this.categoriaEditando.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(this.categoriaEditando)
@@ -164,8 +166,8 @@ export const Administracao = {
         },
         deleteNow() {
     const url = this.deleteType === 'brinquedo'
-        ? `http://localhost:8080/brinquedo/${this.deleteId}`
-        : `http://localhost:8080/categoria/${this.deleteId}`;
+        ? `${API_URL}/brinquedo/${this.deleteId}`
+        : `${API_URL}/categoria/${this.deleteId}`;
 
     fetch(url, {
         method: 'DELETE'

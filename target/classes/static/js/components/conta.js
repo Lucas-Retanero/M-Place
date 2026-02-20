@@ -1,3 +1,5 @@
+import { API_URL } from "./config.js";
+
 export const Conta = {
     data() {
         return {
@@ -7,7 +9,7 @@ export const Conta = {
     mounted() {
         const id = localStorage.getItem("usuarioId");
         if (id) {
-            fetch(`http://localhost:8080/usuario/${id}`)
+            fetch(`${API_URL}/usuario/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     this.usuario = data;

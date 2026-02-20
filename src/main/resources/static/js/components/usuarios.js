@@ -16,7 +16,7 @@ export const Usuarios = {
     methods: {
         carregarUsuarios() {
             this.carregandoUsuarios = true;
-            fetch("http://localhost:8080/usuario")
+            fetch("https://m-place.onrender.com/usuario")
                 .then(res => res.json())
                 .then(data => {
                     this.usuarios = data;
@@ -38,7 +38,7 @@ export const Usuarios = {
 
     const id = this.usuarioEditando.id;
 
-    fetch(`http://localhost:8080/usuario/${id}`, {
+    fetch(`https://m-place.onrender.com/usuario/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(usuarioAtualizado)
@@ -66,7 +66,7 @@ export const Usuarios = {
             this.showDeleteConfirm = true;
         },
         excluirUsuario() {
-            fetch(`http://localhost:8080/usuario/${this.usuarioParaExcluir.id}`, {
+            fetch(`https://m-place.onrender.com/usuario/${this.usuarioParaExcluir.id}`, {
                 method: 'DELETE'
             })
             .then(() => {
@@ -98,7 +98,7 @@ export const Usuarios = {
             return "Desconhecido";
         },
         iniciarSSE() {
-            this.eventSource = new EventSource("http://localhost:8080/sse/usuario");
+            this.eventSource = new EventSource("https://m-place.onrender.com/sse/usuario");
 
             this.eventSource.addEventListener("atualizacao", (event) => {
                 console.log("Evento SSE recebido:", event.data);

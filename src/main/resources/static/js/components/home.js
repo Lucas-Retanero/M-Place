@@ -1,3 +1,5 @@
+import { API_URL } from "./config.js";
+
 export const Home = {
     data() {
         return {
@@ -37,7 +39,7 @@ export const Home = {
     methods: {
         carregarBrinquedos() {
             this.carregando = true;
-            fetch("http://localhost:8080/brinquedo")
+            fetch(`${API_URL}/brinquedo`)
                 .then(response => response.json())
                 .then(data => {
                     this.brinquedos = data;
@@ -50,7 +52,7 @@ export const Home = {
                 });
         },
         iniciarAtualizacaoAutomatica() {
-            this.source = new EventSource("http://localhost:8080/sse/brinquedo");
+            this.source = new EventSource(`${API_URL}/sse/brinquedo`);
             this.source.addEventListener("atualizacao", () => {
                 this.carregarBrinquedos();
             });
