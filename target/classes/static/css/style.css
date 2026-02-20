@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
-@import "https://unpkg.com/open-props/easings.min.css"; /* Para as transições do botão de tema */
+@import "https://unpkg.com/open-props/easings.min.css";
 
-/* Configurações gerais */
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
-/* Variáveis de tema para o modo escuro (padrão) */
 :root {
     --primary-color: #6A0DAD;
     --primary-color-hover: #4a0978;
@@ -24,11 +22,10 @@ html {
     --comfirm-color-hover: #8f0707;
     --transition: 0.3s;
     font-family: "Rajdhani", sans-serif;
-    --icon-fill: var(--text-color); 
+    --icon-fill: var(--text-color);
     --icon-fill-hover: var(--primary-color);
 }
 
-/* Variáveis de tema para o modo claro */
 html[data-theme="light"] {
     --primary-color: #6A0DAD;
     --primary-color-hover: #500a82;
@@ -44,12 +41,10 @@ html[data-theme="light"] {
     --erro-color: #df0e0e;
     --comfirm-color: #bf0b0b;
     --comfirm-color-hover: #8f0707;
-    --icon-fill: var(--text-color); 
+    --icon-fill: var(--text-color);
     --icon-fill-hover: var(--primary-color);
 }
 
-
-/* Estilos do corpo (agora reage a data-theme do html) */
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -60,7 +55,6 @@ html[data-theme="light"] body {
     color: var(--text-color-light);
 }
 
-/* Seus outros estilos */
 #app {
     display: flex;
     flex-direction: row;
@@ -83,7 +77,7 @@ header {
     border-bottom: solid 1px var(--bg-color);
     gap: 0.5rem;
     position: relative;
-	padding: 1.5rem; /* Adicionado para posicionar o botão de tema */
+	padding: 1.5rem;
 }
 
 html[data-theme="light"] header {
@@ -201,8 +195,8 @@ html[data-theme="light"] #logout:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* fundo escurecido */
-    backdrop-filter: blur(5px); /* efeito de desfoque */
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -307,7 +301,6 @@ main::-webkit-scrollbar-thumb {
     border-radius: 10px;
 }
 
-/* --- Estilos do Botão de Tema --- */
 .theme-toggle {
     background: none;
     border: none;
@@ -318,10 +311,10 @@ main::-webkit-scrollbar-thumb {
     justify-content: center;
     width: 35px;
     height: 35px;
-    position: absolute; /* Posição absoluta para o botão de tema */
+    position: absolute;
     right: 25px;
 	margin-top: 2px;
-	transition: var(--transition); /* Ajuste conforme necessário */
+	transition: var(--transition);
 }
 
 .sun-and-moon {
@@ -406,5 +399,83 @@ html[data-theme="dark"] .sun-and-moon > .moon > circle {
         transition-duration: .5s;
         transition-delay: .25s;
 		transition: var(--transition);
+    }
+}
+
+@media (max-width: 768px) {
+    #app {
+        flex-direction: column;
+    }
+
+    nav {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        border-top: 1px solid var(--complementary-color);
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    nav ul li {
+        flex: 1;
+        min-height: 4.5rem;
+        padding: 0.5rem;
+        border-bottom: none;
+        border-right: 1px solid var(--complementary-color);
+    }
+
+    nav ul li:last-child {
+        border-right: none;
+    }
+
+    nav ul li p {
+        display: none;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    header {
+        height: 5rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: 1.5rem;
+        height: calc(100vh - 10rem);
+        margin-bottom: 5rem;
+    }
+
+    .popup-content {
+        width: 90%;
+        max-width: 22rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .btns-logout {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btns-logout button {
+        width: 100%;
     }
 }

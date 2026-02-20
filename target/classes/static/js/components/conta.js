@@ -2,8 +2,6 @@ export const Conta = {
     data() {
         return {
             usuario: {},
-            // showLogoutConfirm e logoutCallback não são mais necessários aqui,
-            // pois o logout será tratado pelo componente raiz (app.js)
         };
     },
     mounted() {
@@ -20,9 +18,6 @@ export const Conta = {
         }
     },
     methods: {
-        // Removido: formatarData, pois não há campos de data no modelo Usuário
-        
-        // Novo método para converter o ID da permissão para um rótulo legível
         getPermissaoLabel(permissaoId) {
             switch (permissaoId) {
                 case 1:
@@ -30,7 +25,7 @@ export const Conta = {
                 case 2:
                     return "Administrador(a)";
                 case 3:
-                    return "Administrador(a) Master"; // Adicionei '(a)' para administradores
+                    return "Administrador(a) Master";
                 default:
                     return "Desconhecido";
             }

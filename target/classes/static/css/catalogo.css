@@ -1,53 +1,42 @@
+/* ========================================================================== */
+/* SEU CÓDIGO ORIGINAL INTACTO (DESKTOP)                                      */
+/* ========================================================================== */
+
 .catalogo {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2.5rem;
     width: 100%;
+    padding-bottom: 5rem;
+}
+
+#titulo {
+    font-size: 2rem;
+    font-weight: 600;
+    width: 100%;
+    min-height: 3.5rem;
+    cursor: default;
+    border-bottom: 1.5px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#titulo span {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--destaque-color);
+    margin-left: 10px;
 }
 
 .categorias {
     width: 100%;
-    height: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     justify-items: center;
     padding-top: 0.5rem;
-}
-
-@media (max-width: 794px) {
-    .categorias {
-        grid-template-columns: repeat(1, 1fr);
-    }
-}
-
-/* Telas pequenas (até 575px) - 1 brinquedo por linha */
-@media (min-width: 795px) and (max-width: 1079px) {
-    .categorias {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Telas médias (768px até 1060px) - 2 brinquedos por linha */
-@media (min-width: 1080px) and (max-width: 1359px) {
-    .categorias {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Telas grandes (a partir de 1061px) - 3 brinquedos por linha */
-@media (min-width: 1360px) and (max-width: 1599px) {
-    .categorias {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* Telas grandes (a partir de 1200px) - 4 brinquedos por linha */
-@media (min-width: 1600px) {
-    .categorias {
-        grid-template-columns: repeat(5, 1fr);
-    }
 }
 
 .categoria {
@@ -56,43 +45,96 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
-    width: 16rem;
+    width: 100%;
+    max-width: 16rem;
     min-height: 16rem;
     border-radius: 0.8rem;
-    padding: 1rem;
+    padding: 1.5rem;
     cursor: pointer;
     border: 1px solid var(--complementary-color);
     background-color: var(--secondary-color);
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.categoria:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
 }
 
 .categoria p {
-    font-weight: 500;
-    font-size: 1.5rem;
+    font-weight: 600;
+    font-size: 1.3rem;
     text-align: center;
 }
 
 .card-img-categoria {
-    width: 12rem;
-    height: 12rem;
+    width: 100%;
+    height: 10rem;
     border-radius: 0.8rem;
+    overflow: hidden;
 }
 
 .card-img-categoria img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     border-radius: 0.8rem;
+}
+
+.destaques {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+}
+
+.card-brinquedo {
+    width: 100%;
+    max-width: 20rem;
+    min-height: 22rem;
+    background-color: var(--secondary-color);
+    border-radius: 0.8rem;
+    border: 1px solid var(--complementary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    padding-bottom: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-brinquedo:hover {
+    transform: translateY(-5px);
+}
+
+.img-brinquedo {
+    width: 100%;
+    height: 180px;
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.img-brinquedo img {
+    max-height: 90%;
+    max-width: 90%;
+    object-fit: contain;
 }
 
 #btn-voltar {
     width: 100%;
     display: flex;
     justify-content: start;
-    align-items: start;
 }
 
 #btn-voltar button {
-    width: 8rem;
     height: 2.5rem;
+    padding: 0 1.2rem;
     background-color: var(--primary-color);
     color: var(--text-color);
     border: none;
@@ -104,22 +146,184 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    padding-right: 1rem;
+    transition: 0.3s;
 }
 
 #btn-voltar button:hover {
     background-color: var(--primary-color-hover);
 }
 
-#btn-voltar i {
-    padding-top: 5px;
-    font-size: 1.5rem;
+.select-brinquedo {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--complementary-color);
+    border-radius: 0.8rem;
+    padding: 2rem;
 }
 
-#sem-brinquedos {
-    font-size: 1.5rem;
-    font-weight: 500;
-    text-align: center;
+.conteiner-brinquedo-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+#img-brinquedo-selecionado {
     width: 100%;
-    cursor: default;
+    max-width: 400px;
+    height: auto;
+    border-radius: 0.8rem;
+    background-color: #fff;
+}
+
+.info-brinquedo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#descricao-brinquedo-detalhes {
+    font-size: 2rem;
+}
+
+.conteiner-brinquedo-bottom {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--complementary-color);
+    border-radius: 1rem;
+}
+
+.info-card {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border-radius: 0.8rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+#btn-comprar, #btn-comprar-detalhes {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: 0.3s;
+}
+
+#btn-comprar { width: 90%; height: 2.5rem; }
+#btn-comprar-detalhes { width: 100%; height: 3.5rem; font-size: 1.2rem; }
+
+#dinheiro-detalhes { font-size: 1.6rem; font-weight: bold; }
+#pix-detalhes { font-size: 1.4rem; color: var(--destaque-color); font-weight: 600; }
+
+#sem-brinquedos {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    color: var(--bg-color-2);
+}
+
+/* ========================================================================== */
+/* REFINAMENTO RESPONSIVO (MOBILE)                                            */
+/* ========================================================================== */
+
+@media (max-width: 1024px) {
+    .conteiner-brinquedo-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .info-brinquedo {
+        align-items: center;
+    }
+
+    #img-brinquedo-selecionado {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .catalogo {
+        padding: 0 1rem 3rem 1rem;
+        gap: 1.5rem;
+    }
+
+    #titulo {
+        font-size: 1.5rem;
+        justify-content: center;
+        text-align: center;
+        padding-bottom: 0.5rem;
+    }
+
+    #titulo span {
+        font-size: 0.9rem;
+        margin-left: 0;
+        width: 100%; /* Força a categoria selecionada a ir para baixo do título no mobile */
+    }
+
+    .categorias {
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas de categorias no mobile fica melhor que uma */
+        gap: 1rem;
+    }
+
+    .categoria {
+        max-width: 100%;
+        min-height: 12rem;
+        padding: 1rem;
+    }
+
+    .categoria p {
+        font-size: 1rem;
+    }
+
+    .card-img-categoria {
+        height: 6rem;
+    }
+
+    #btn-voltar {
+        justify-content: center; /* Centraliza o botão de voltar no mobile */
+    }
+
+    .select-brinquedo {
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .categorias {
+        grid-template-columns: 1fr;
+    }
+
+    .destaques {
+        grid-template-columns: 1fr;
+    }
+
+    .card-brinquedo {
+        max-width: 100%;
+    }
+
+    .conteiner-brinquedo-bottom {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    #descricao-brinquedo-detalhes {
+        font-size: 1.5rem;
+    }
+
+    #btn-comprar-detalhes {
+        font-size: 1rem;
+        height: 3rem;
+    }
 }

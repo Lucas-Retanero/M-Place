@@ -9,7 +9,7 @@
     width: 100%;
     border-collapse: collapse;
     text-align: center;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .tabela-brinquedos td img, .tabela-categorias td img {
@@ -119,8 +119,6 @@ html[data-theme="light"] #btn-editar-tabela:hover {
 #btn-novo-brinquedo i, #btn-nova-categoria i {
     margin-top: 2px;
 }
-
-/* ---------------------- POP-UP ESTILIZADO ---------------------- */
 
 .popup-overlay {
     position: fixed;
@@ -296,15 +294,103 @@ html[data-theme="light"] #btn-cancelar:hover {
   font-weight: bold;
 }
 .abas-tabelas button.ativo {
-  border-bottom: 3px solid var(--primary-color); 
+  border-bottom: 3px solid var(--primary-color);
   color: var(--primary-color);
 }
 
 html[data-theme="light"] .abas-tabelas button.ativo {
-  border-bottom: 3px solid var(--primary-color); 
+  border-bottom: 3px solid var(--primary-color);
   color: var(--primary-color);
 }
 
 html[data-theme="light"] .abas-tabelas button {
   color: var(--text-color-light);
+}
+
+@media (max-width: 768px) {
+    .abas-tabelas {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #btn-novo-brinquedo, #btn-nova-categoria {
+        margin: 0 auto;
+    }
+
+    .tabela-brinquedos, .tabela-categorias,
+    .tabela-brinquedos tbody, .tabela-categorias tbody,
+    .tabela-brinquedos tr, .tabela-categorias tr,
+    .tabela-brinquedos td, .tabela-categorias td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-brinquedos thead, .tabela-categorias thead {
+        display: none;
+    }
+
+    .tabela-brinquedos tr, .tabela-categorias tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 0.8rem;
+        padding: 0.5rem;
+    }
+
+    /* Estilo do Conteúdo do Card */
+    .tabela-brinquedos td, .tabela-categorias td {
+        text-align: center;
+        border: none;
+        border-bottom: 1px solid var(--complementary-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.8rem 0.5rem;
+    }
+
+    html[data-theme="light"] .tabela-brinquedos td,
+    html[data-theme="light"] .tabela-categorias td {
+        border-bottom: 1px solid var(--tb-color);
+    }
+
+    .tabela-brinquedos td:last-child, .tabela-categorias td:last-child {
+        border-bottom: none;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    #btn-excluir-tabela {
+        margin-left: 0;
+    }
+
+    .modal-criar-brinquedo {
+        width: 90%;
+        padding: 1.5rem;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-criar-brinquedo h2 {
+        font-size: 1.5rem;
+    }
+
+    .linha-imagem {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .linha-imagem input, #btn-pesquisar {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .btns-form-brinquedo {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .btns-form-brinquedo button {
+        width: 100%;
+    }
 }

@@ -1,7 +1,6 @@
 export const Administracao = {
     data() {
         return {
-            // Brinquedos
             brinquedos: [],
             carregando: true,
             mostrarCriar: false,
@@ -30,11 +29,9 @@ export const Administracao = {
             categoriaEditando: null,
             tabelaAtual: 'categorias',
             tituloPagina: 'Administração de Categorias',
-            // Confirmação de exclusão
             showDeleteConfirm: false,
             deleteType: '',
             deleteId: null,
-            // Mensagem de sucesso
             showMensagemSucesso: false,
             mensagemSucesso: '',
         };
@@ -112,7 +109,6 @@ export const Administracao = {
             window.open(url, '_blank');
         },
 
-        // Categorias
         carregarCategorias() {
     this.carregandoCategorias = true;
     fetch("http://localhost:8080/categoria")
@@ -166,7 +162,6 @@ export const Administracao = {
             this.deleteId = id;
             this.showDeleteConfirm = true;
         },
-        // Confirmação de Exclusão
         deleteNow() {
     const url = this.deleteType === 'brinquedo'
         ? `http://localhost:8080/brinquedo/${this.deleteId}`

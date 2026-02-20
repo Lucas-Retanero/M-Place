@@ -1,6 +1,5 @@
 export const Equipe = {
     data() {
-        //variáveis
     },
     methods: {
         

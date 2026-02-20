@@ -11,7 +11,7 @@
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2rem;
     justify-items: center;
-	margin-top: 4rem; 
+    margin-top: 4rem;
     padding-top: 1rem;
 }
 
@@ -96,4 +96,65 @@ html[data-theme="light"] .perfil-container .description {
 #linkedin {
     padding-top: 7px;
     padding-left: 2px;
+}
+@media (max-width: 768px) {
+    .equipe {
+        padding-bottom: 3rem;
+    }
+
+    .equipe-container {
+        width: 90%;
+        margin-top: 2rem;
+        gap: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .perfil-container {
+        width: 100%;
+        max-width: 20rem;
+        min-height: auto;
+        padding: 2rem 1.5rem;
+        gap: 1.2rem;
+    }
+
+    .perfil-container img {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .perfil-container .Name {
+        font-size: 1.4rem;
+    }
+
+    .perfil-container .description {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .links-perfil a {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .links-perfil i {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #titulo {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .equipe-container {
+        width: 95%;
+        margin-top: 1.5rem;
+    }
+
+    .perfil-container {
+        padding: 1.5rem 1rem;
+    }
 }

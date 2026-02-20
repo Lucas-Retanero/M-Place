@@ -36,7 +36,7 @@ export const Usuarios = {
         permissao: parseInt(this.novaPermissao)
     };
 
-    const id = this.usuarioEditando.id; // ⚠️ Salve o ID antes
+    const id = this.usuarioEditando.id;
 
     fetch(`http://localhost:8080/usuario/${id}`, {
         method: 'PUT',
@@ -44,17 +44,13 @@ export const Usuarios = {
         body: JSON.stringify(usuarioAtualizado)
     })
     .then(() => {
-        // Atualiza localmente
         const index = this.usuarios.findIndex(u => u.id === id);
         if (index !== -1) {
             this.usuarios[index].permissao = usuarioAtualizado.permissao;
         }
-
-        // Fecha popup e mostra mensagem de sucesso
         this.showEditPermissaoPopup = false;
         this.exibirMensagemSucesso("Permissão atualizada com sucesso!");
 
-        // Limpa os campos depois
         this.usuarioEditando = null;
         this.novaPermissao = null;
     })
