@@ -16,15 +16,12 @@ public class Brinquedo {
     private String nome;
     private float preco;
     private String categoria;
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String descricao;
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String detalhes;
     private String marca;
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String urlimagem;
     
     // Construtores;
