@@ -104,7 +104,8 @@ html[data-theme="light"] .perfil-container .description {
 
     .equipe-container {
         width: 90%;
-        margin-top: 2rem;
+        margin-top: 0;
+        padding-top: 0;
         gap: 1.5rem;
         display: flex;
         flex-direction: column;
@@ -144,14 +145,9 @@ html[data-theme="light"] .perfil-container .description {
 }
 
 @media (max-width: 480px) {
-    #titulo {
-        font-size: 1.8rem;
-        text-align: center;
-    }
 
     .equipe-container {
         width: 95%;
-        margin-top: 1.5rem;
     }
 
     .perfil-container {

@@ -403,6 +403,9 @@ html[data-theme="dark"] .sun-and-moon > .moon > circle {
 }
 
 @media (max-width: 768px) {
+
+    ::-webkit-scrollbar { display: none; }
+
     #app {
         flex-direction: column;
     }
@@ -454,6 +457,7 @@ html[data-theme="dark"] .sun-and-moon > .moon > circle {
 
     main {
         padding: 1.5rem;
+        padding-bottom: 4.5rem;
         height: calc(100vh - 80px);
     }
 

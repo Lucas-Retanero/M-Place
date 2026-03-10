@@ -1,1 +1,1 @@
-export const API_URL = "https://m-place.onrender.com";
+export const API_URL = "http://localhost:8080";

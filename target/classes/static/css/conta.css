@@ -212,10 +212,10 @@ html[data-theme="light"] .info-grupo {
 
 @media (max-width: 768px) {
     .conta {
-        padding: 1.5rem 1rem;
-        justify-content: flex-start;
+        padding: 1.5rem 0 0 0;
+        justify-content: space-between;
         height: auto;
-        min-height: calc(100vh - 8rem);
+        min-height: calc(100vh - 10rem);
     }
 
     .title-conta {
@@ -302,6 +302,11 @@ html[data-theme="light"] .info-grupo {
         align-self: center;
         margin-top: 1rem;
         height: 3.5rem;
+        padding: .5rem;
+    }
+
+    #sair span {
+        font-size: 14px;
     }
 }
 

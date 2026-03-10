@@ -308,6 +308,10 @@ html[data-theme="light"] .abas-tabelas button {
 }
 
 @media (max-width: 768px) {
+    .administracao {
+        gap: 1rem;
+    }
+
     .abas-tabelas {
         flex-wrap: wrap;
         justify-content: center;
@@ -336,7 +340,6 @@ html[data-theme="light"] .abas-tabelas button {
         padding: 0.5rem;
     }
 
-    /* Estilo do Conteúdo do Card */
     .tabela-brinquedos td, .tabela-categorias td {
         text-align: center;
         border: none;

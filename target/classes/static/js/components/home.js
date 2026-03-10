@@ -11,7 +11,7 @@ export const Home = {
         };
     },
     computed: {
-        brinquedosExibidos() {
+        brinquedosProcessados() {
             const brinquedosAgrupados = {};
             this.brinquedos.forEach(brinquedo => {
                 if (!brinquedosAgrupados[brinquedo.categoria]) {
@@ -20,20 +20,23 @@ export const Home = {
                 brinquedosAgrupados[brinquedo.categoria].push(brinquedo);
             });
 
-            let brinquedosProcessados = [];
+            let processados = [];
             for (const categoria in brinquedosAgrupados) {
-                brinquedosProcessados = brinquedosProcessados.concat(brinquedosAgrupados[categoria].slice(0, 3));
+                processados = processados.concat(brinquedosAgrupados[categoria]);
             }
 
-            for (let i = brinquedosProcessados.length - 1; i > 0; i--) {
+            for (let i = processados.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [brinquedosProcessados[i], brinquedosProcessados[j]] = [brinquedosProcessados[j], brinquedosProcessados[i]];
+                [processados[i], processados[j]] = [processados[j], processados[i]];
             }
 
-            return brinquedosProcessados.slice(0, this.limiteExibicao);
+            return processados;
+        },
+        brinquedosExibidos() {
+            return this.brinquedosProcessados.slice(0, this.limiteExibicao);
         },
         temMaisParaMostrar() {
-            return this.limiteExibicao < this.brinquedos.length;
+            return this.limiteExibicao < this.brinquedosProcessados.length;
         }
     },
     methods: {

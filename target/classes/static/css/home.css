@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2.5rem;
+    padding-bottom: 1.5rem;
 }
 
 #titulo {
@@ -28,8 +29,8 @@
     justify-content: center;
     gap: 1.5rem;
     width: 100%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .btn-ver-mais, .btn-ver-menos {
@@ -57,42 +58,35 @@ html[data-theme="light"] .btn-ver-menos {
     color: var(--primary-color);
 }
 
-@media (max-width: 579px) {
-    #titulo {
-        font-size: 1.8rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis
-    }
+#btn-voltar {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
 }
 
-@media (min-width: 580px) and (max-width: 900px) {
-    .destaques {
-        grid-template-columns: repeat(1, 1fr);
-    }
+#btn-voltar button {
+    padding: 0.6rem 1.2rem;
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-@media (min-width: 901px) and (max-width: 1270px) {
-    .destaques {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1271px) and (max-width: 1599px) {
-    .destaques {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (min-width: 1600px) {
-    .destaques {
-        grid-template-columns: repeat(4, 1fr);
-    }
+#btn-voltar button:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .card-brinquedo {
-    width: 20rem;
-    min-height: 20rem;
+    width: 100%;
+    max-width: 20rem;
+    min-height: 22rem;
     background-color: var(--secondary-color);
     border-radius: 0.8rem;
     border: 1px solid var(--complementary-color);
@@ -103,20 +97,25 @@ html[data-theme="light"] .btn-ver-menos {
     padding: 1rem;
     padding-bottom: 1.5rem;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .img-brinquedo {
     width: 100%;
-    height: 50%;
+    height: 12rem;
     border-radius: 0.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fff;
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
 .img-brinquedo img {
-    height: 95%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 #descricao-brinquedo {
@@ -124,6 +123,7 @@ html[data-theme="light"] .btn-ver-menos {
     text-align: center;
     font-weight: 500;
     width: 100%;
+    margin-top: 1rem;
 }
 
 .preco-brinquedo {
@@ -131,6 +131,7 @@ html[data-theme="light"] .btn-ver-menos {
     flex-direction: column;
     align-items: center;
     gap: 0.3rem;
+    margin: 1rem 0;
 }
 
 #dinheiro {
@@ -145,8 +146,8 @@ html[data-theme="light"] .btn-ver-menos {
 }
 
 #btn-comprar {
-    width: 70%;
-    height: 2.5rem;
+    width: 80%;
+    height: 2.8rem;
     text-transform: uppercase;
     border: none;
     background-color: var(--primary-color);
@@ -156,28 +157,19 @@ html[data-theme="light"] .btn-ver-menos {
     font-weight: 600;
     font-size: 1rem;
     display: flex;
-    padding-top: 3px;
     justify-content: center;
-    justify-items: center;
     align-items: center;
-    text-align: center;
     gap: 0.5rem;
     transition: 0.3s;
-}
-
-#btn-comprar i {
-    margin-top: 2px;
 }
 
 #btn-comprar:hover {
     background-color: var(--primary-color-hover);
     gap: 0.8rem;
-    transition: 0.3s;
 }
 
 .select-brinquedo {
     width: 80%;
-    height: 100%;
     display: flex;
     gap: 2.5rem;
     flex-direction: column;
@@ -185,20 +177,32 @@ html[data-theme="light"] .btn-ver-menos {
     border: 1px solid var(--complementary-color);
     border-radius: 0.8rem;
     padding: 2.5rem 2rem 2rem 2rem;
+    box-sizing: border-box;
 }
 
 .conteiner-brinquedo-top {
     display: flex;
-    height: 25rem;
+    height: auto;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
 }
 
+#img-brinquedo-selecionado {
+    width: 100%;
+    max-width: 25rem;
+    height: 25rem;
+    border: 1px solid var(--complementary-color);
+    border-radius: 0.8rem;
+    background-color: #fff;
+    object-fit: contain;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
 .info-brinquedo {
     width: 50%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -270,7 +274,7 @@ html[data-theme="light"] .info-card:hover {
 .info-card h4 {
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
-  flex-direction: row;
+  display: flex;
   gap: 0.5rem;
   color: var(--destaque-color);
 }
@@ -286,16 +290,6 @@ html[data-theme="light"] .info-card p {
   font-weight: 500;
 }
 
-#img-brinquedo-selecionado {
-    height: 100%;
-    border: 1px solid var(--complementary-color);
-    border-radius: 0.8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-}
-
 #btn-comprar-detalhes {
     width: 100%;
     height: 3rem;
@@ -308,66 +302,77 @@ html[data-theme="light"] .info-card p {
     font-weight: 600;
     font-size: 1.2rem;
     display: flex;
-    padding-top: 4px;
     justify-content: center;
-    justify-items: center;
     align-items: center;
-    text-align: center;
     transition: 0.3s;
     gap: 0.5rem;
-}
-
-#btn-comprar-detalhes i {
-    margin-top: 2px;
 }
 
 #btn-comprar-detalhes:hover {
     background-color: var(--primary-color-hover);
     gap: 0.8rem;
-    transition: 0.3s;
+}
+
+@media (max-width: 579px) {
+    #titulo {
+        font-size: 1.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (min-width: 580px) and (max-width: 900px) {
+    .destaques { grid-template-columns: repeat(1, 1fr); }
+}
+@media (min-width: 901px) and (max-width: 1270px) {
+    .destaques { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1271px) and (max-width: 1599px) {
+    .destaques { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1600px) {
+    .destaques { grid-template-columns: repeat(4, 1fr); }
 }
 
 @media (max-width: 768px) {
+    .home {
+        gap: 1.5rem;
+        padding-bottom: 0;
+    }
 
     .destaques {
-        padding: 0 1rem;
+        padding: 0;
         gap: 1.5rem;
     }
 
     .card-brinquedo {
-        width: 100%;
-        max-width: 20rem;
-        min-height: auto;
+        max-width: 22rem;
     }
 
     #btn-comprar {
         width: 90%;
-        height: 3rem;
+        height: 3.2rem;
+    }
+
+    #btn-voltar {
+        width: 100%;
     }
 
     .select-brinquedo {
-        width: 95%;
+        width: 100%;
         padding: 1.5rem 1rem;
         gap: 1.5rem;
-        height: auto;
     }
 
     .conteiner-brinquedo-top {
         flex-direction: column;
-        height: auto;
         gap: 1.5rem;
     }
 
     #img-brinquedo-selecionado {
-        width: 100%;
         height: 18rem;
-        padding: 1rem;
-    }
-
-    #img-brinquedo-selecionado img {
         max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
     }
 
     .info-brinquedo {
@@ -388,6 +393,7 @@ html[data-theme="light"] .info-card p {
     .conteiner-brinquedo-bottom {
         grid-template-columns: 1fr;
         padding: 1rem;
+        gap: 1rem;
     }
 
     .info-card {

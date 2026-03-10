@@ -1,7 +1,3 @@
-/* ========================================================================== */
-/* SEU CÓDIGO ORIGINAL INTACTO (DESKTOP)                                      */
-/* ========================================================================== */
-
 .catalogo {
     display: flex;
     flex-direction: column;
@@ -233,10 +229,6 @@
     color: var(--bg-color-2);
 }
 
-/* ========================================================================== */
-/* REFINAMENTO RESPONSIVO (MOBILE)                                            */
-/* ========================================================================== */
-
 @media (max-width: 1024px) {
     .conteiner-brinquedo-top {
         flex-direction: column;
@@ -255,7 +247,7 @@
 
 @media (max-width: 768px) {
     .catalogo {
-        padding: 0 1rem 3rem 1rem;
+        padding: 0 1rem 2rem 1rem;
         gap: 1.5rem;
     }
 
@@ -269,11 +261,11 @@
     #titulo span {
         font-size: 0.9rem;
         margin-left: 0;
-        width: 100%; /* Força a categoria selecionada a ir para baixo do título no mobile */
+        width: 100%;
     }
 
     .categorias {
-        grid-template-columns: repeat(2, 1fr); /* Duas colunas de categorias no mobile fica melhor que uma */
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
@@ -292,11 +284,12 @@
     }
 
     #btn-voltar {
-        justify-content: center; /* Centraliza o botão de voltar no mobile */
+        justify-content: center;
     }
 
     .select-brinquedo {
         padding: 1.5rem 1rem;
+        margin-bottom: 2rem;
     }
 }
 
